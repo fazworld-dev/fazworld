@@ -1,7 +1,7 @@
 var/global/list/gamemode_cache = list()
 
 /datum/configuration
-	var/server_name = "Nebula 13"		// server name (for world name / status)
+	var/server_name = "Faz-World"		// server name (for world name / status)
 	var/server_suffix = 0				// generate numeric suffix based on server port
 
 	var/log_ooc = 0						// log OOC channel
@@ -255,12 +255,15 @@ var/global/list/gamemode_cache = list()
 
 	var/no_throttle_localhost
 
-	var/dex_malus_brainloss_threshold = 30 //The threshold of when brainloss begins to affect dexterity. 
+	var/dex_malus_brainloss_threshold = 30 //The threshold of when brainloss begins to affect dexterity.
+
+	var/hub_password
 
 	var/static/list/protected_vars = list(
 		"comms_password",
 		"ban_comms_password",
-		"login_export_addr"
+		"login_export_addr",
+		"hub_password"
 	)
 
 /datum/configuration/VV_hidden()
@@ -814,6 +817,9 @@ var/global/list/gamemode_cache = list()
 
 				if("no_throttle_localhost")
 					config.no_throttle_localhost = TRUE
+
+				if("hub_password")
+					config.hub_password = value
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")

@@ -1,34 +1,34 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/NebulaSS13/Nebula"><img src="https://avatars1.githubusercontent.com/u/61128341" alt="Nebula 13" width="200"></a>
+  <a href="https://github.com/fazworld-dev/fazworld"><img src="https://avatars1.githubusercontent.com/u/101757370" alt="Faz-World" width="200"></a>
   <br>
-  Nebula 13
+  Faz-World
   <br>
 </h1>
 
 <p align="center">
-  <a href="https://github.com/NebulaSS13/Nebula/actions">
-    <img src="https://github.com/NebulaSS13/Nebula/workflows/Run%20Tests/badge.svg"
+  <a href="https://github.com/fazworld-dev/fazworld/actions">
+    <img src="https://github.com/fazworld-dev/fazworld/workflows/Run%20Tests/badge.svg"
          alt="Build Status">
   </a>
-  <a href="https://www.codefactor.io/repository/github/NebulaSS13/Nebula">
-    <img src="https://www.codefactor.io/repository/github/NebulaSS13/Nebula/badge"
+  <a href="https://www.codefactor.io/repository/github/fazworld-dev/fazworld">
+    <img src="https://www.codefactor.io/repository/github/fazworld-dev/fazworld/badge"
          alt="CodeFactor">
   </a>
-  <a href="https://github.com/NebulaSS13/Nebula/commits/dev">
-    <img src="https://img.shields.io/github/last-commit/NebulaSS13/Nebula"
+  <a href="https://github.com/fazworld-dev/fazworld/commits/dev">
+    <img src="https://img.shields.io/github/last-commit/fazworld-dev/fazworld"
          alt="Last Commit">
   </a>
-  <a href="https://github.com/NebulaSS13/Nebula/issues">
-    <img src="https://img.shields.io/github/issues/NebulaSS13/Nebula"
+  <a href="https://github.com/fazworld-dev/fazworld/issues">
+    <img src="https://img.shields.io/github/issues/fazworld-dev/fazworld"
          alt="Issues">
   </a>
-  <a href="https://discord.gg/Ddw58yF">
+  <!--<a href="https://discord.gg/Ddw58yF">
     <img src="https://img.shields.io/discord/678820025355862045?style=plastic"
-         alt="Discord">
+         alt="Discord">--> <!-- TO BE ADDED -->
   </a>
-  <a href="https://github.com/NebulaSS13/Nebula/blob/dev/LICENSE">
-    <img src="https://img.shields.io/github/license/NebulaSS13/Nebula"
+  <a href="https://github.com/fazworld-dev/fazworld/blob/dev/LICENSE">
+    <img src="https://img.shields.io/github/license/fazworld-dev/fazworld"
          alt="License">
   </a>
 </p>
@@ -44,7 +44,7 @@
 
 ### NOTICE OF MODIFICATION
 
-This project was forked from [Baystation 12](https://github.com/Baystation12/Baystation12) on 6 Jan 2020.
+This project was forked from [Nebula](https://github.com/NebulaSS13/Nebula) on 16 March 2022.
 
 ---
 
@@ -62,7 +62,7 @@ Please see [/docs/SECURITY.md](/docs/SECURITY.md) for this repository's security
 
 ### LICENSE
 
-The code for Nebula13 is licensed under the [GNU Affero General Public License v3](http://www.gnu.org/licenses/agpl.html), which can be found in full in [/LICENSE](/LICENSE).
+The code for Fazworld is licensed under the [GNU Affero General Public License v3](http://www.gnu.org/licenses/agpl.html), which can be found in full in [/LICENSE](/LICENSE).
 
 Code with a git authorship date prior to `1420675200 +0000` (2015/01/08 00:00 GMT) is licensed under the GNU General Public License version 3, which can be found in full in [/docs/GPL3.txt](/docs/GPL3.txt)
 

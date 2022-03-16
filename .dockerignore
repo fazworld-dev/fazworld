@@ -1,11 +1,10 @@
 .git
 !.git/HEAD
 !.git/logs/HEAD
-nebula.dmb
-nebula.rsc
-nebula.dyn.rsc
-nebula.dyn.rsc.lk
-nebula.int
+*.dmb
+*.rsc
+*.lk
+*.int
 libmysql.dll
 .dockerignore
 Dockerfile
