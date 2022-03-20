@@ -1,0 +1,19 @@
+#ifndef MODPACK_ANIMATRONICS
+#define MODPACK_ANIMATRONICS
+// BEGIN_INTERNALS
+// END_INTERNALS
+// BEGIN_FILE_DIR
+#define FILE_DIR .
+// END_FILE_DIR
+// BEGIN_PREFERENCES
+// END_PREFERENCES
+// BEGIN_INCLUDE
+#include "_animatronics.dm"
+#include "clothing.dm"
+#include "culture.dm"
+#include "limbs.dm"
+#include "organs.dm"
+#include "species.dm"
+#include "species_bodytypes.dm"
+// END_INCLUDE
+#endif
