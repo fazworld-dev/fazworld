@@ -181,8 +181,8 @@
 	if(occupant)
 		return
 
-	if(!hascell(M))
-		return
+/*	if(!hascell(M)) // FAZ-WORLD EDIT
+		return */
 
 	add_fingerprint(M)
 	M.reset_view(src)
