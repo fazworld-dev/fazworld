@@ -14,7 +14,7 @@
 	)
 	skill_points = 30
 	head_position = 1
-	department_types = list(/decl/department/command)
+	department_types = list(/decl/department/management)
 	total_positions = 1
 	spawn_positions = 1
 	selection_color = "#1d1d4f"
@@ -30,7 +30,7 @@
 
 /datum/job/ministation/captain/equip(var/mob/living/carbon/human/H)
 	. = ..()
-	if(H) 
+	if(H)
 		H.verbs |= /mob/proc/freetradeunion_rename_company
 
 /datum/job/ministation/captain/get_access()
@@ -57,8 +57,7 @@
 	outfit_type = /decl/hierarchy/outfit/job/ministation/hop
 	head_position = 1
 	department_types = list(
-		/decl/department/command,
-		/decl/department/civilian
+		/decl/department/management
 	)
 	total_positions = 1
 	spawn_positions = 1

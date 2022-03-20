@@ -8,8 +8,7 @@ Now poorly imported for Nebula!
 
 	#include "../../mods/content/xenobiology/_xenobiology.dme"
 	#include "../../mods/content/corporate/_corporate.dme"
-	#include "../../mods/content/matchmaking/_matchmaking.dme"
-	#include "../../mods/species/ascent/_ascent.dme"
+	#include "../../mods/species/animatronics/_animatronics.dme"
 
 	#define USING_MAP_DATUM /datum/map/ministation
 
@@ -25,20 +24,20 @@ Now poorly imported for Nebula!
 	#include "ministation_shuttles.dm"
 	#include "ministation_objects.dm"
 
+	#include "jobs/animatronics.dm"
 	#include "jobs/command.dm"
 	#include "jobs/civilian.dm"
 	#include "jobs/engineering.dm"
 	#include "jobs/medical.dm"
 	#include "jobs/security.dm"
-	#include "jobs/science.dm"
 	#include "jobs/synthetics.dm"
 
 	#include "outfits/_outfits.dm"
+	#include "outfits/animatronics.dm"
 	#include "outfits/command.dm"
 	#include "outfits/civilian.dm"
 	#include "outfits/engineering.dm"
 	#include "outfits/medical.dm"
-	#include "outfits/science.dm"
 	#include "outfits/security.dm"
 
 #elif !defined(MAP_OVERRIDE)

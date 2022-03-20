@@ -1,15 +1,25 @@
-/datum/job/ministation/assistant
-	title = "Assistant"
+/datum/job/ministation/guest
+	title = "Guest"
 	total_positions = -1
 	spawn_positions = -1
+	supervisors = "absolutely no one"
+	economic_power = 1
+	access = list()
+	minimal_access = list()
+	outfit_type = /decl/hierarchy/outfit/job/ministation_guest
+	department_types = list(/decl/department/guest)
+
+/datum/job/ministation/assistant
+	title = "Attendant"
+	total_positions = 12
+	spawn_positions = 12
 	supervisors = "absolutely everyone"
 	economic_power = 1
 	access = list()
 	minimal_access = list()
-	alt_titles = list("Technical Assistant","Medical Intern","Research Assistant","Visitor")
+	alt_titles = list("Guest Service Attendant", "Entertainment Attendant")
 	outfit_type = /decl/hierarchy/outfit/job/ministation_assistant
-	department_types = list(/decl/department/civilian)
-	event_categories = list(ASSIGNMENT_GARDENER)
+	department_types = list(/decl/department/entertainment)
 
 /datum/job/ministation/assistant/get_access()
 	if(config.assistant_maint)
@@ -18,7 +28,10 @@
 		return list()
 
 /decl/hierarchy/outfit/job/ministation_assistant
-	name = "Job - Ministation Assistant"
+	name = "Faz-World - Job - Attendant"
+
+/decl/hierarchy/outfit/job/ministation_guest
+	name = "Faz-World - Job - Guest"
 
 /datum/job/ministation/bartender
 	title = "Bartender"
