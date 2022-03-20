@@ -100,12 +100,12 @@
 		F.completeness = rand(10,90)
 		forensics.add_data(/datum/forensics/fingerprints, F)
 
-/obj/item/organ/external/Initialize(mapload, material_key, datum/dna/given_dna)	
+/obj/item/organ/external/Initialize(mapload, material_key, datum/dna/given_dna)
 	. = ..()
 	if(. == INITIALIZE_HINT_QDEL)
 		return
 	if(isnull(pain_disability_threshold))
-		pain_disability_threshold = (max_damage * 0.75)	
+		pain_disability_threshold = (max_damage * 0.75)
 
 /obj/item/organ/external/Destroy()
 
@@ -417,7 +417,7 @@
 		if(!affected)
 			affected = loc
 		if(istype(affected) && parent_type == affected.organ_tag)
-			parent = affected 
+			parent = affected
 
 	//Parent hieracrchy handling
 	if(parent)
@@ -1121,6 +1121,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!config.bones_can_break)
 		return
 	if(BP_IS_PROSTHETIC(src))
+		// FAZ-WORLD ADDITION START
+		var/decl/prosthetics_manufacturer/R = GET_DECL(model)
+		R.on_fracture(src)
+		// FAZ-WORLD ADDITION END
 		return	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
 	if((status & ORGAN_BROKEN) || !(limb_flags & ORGAN_FLAG_CAN_BREAK))
 		return
@@ -1152,6 +1156,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 /obj/item/organ/external/proc/mend_fracture()
 	if(BP_IS_PROSTHETIC(src))
+		// FAZ-WORLD ADDITION START
+		var/decl/prosthetics_manufacturer/R = GET_DECL(model)
+		R.on_mend()
+		// FAZ-WORLD ADDITION END
 		return 0	//ORGAN_BROKEN doesn't have the same meaning for robot limbs
 	if(brute_dam > min_broken_damage * config.organ_health_multiplier)
 		return 0	//will just immediately fracture again
@@ -1189,7 +1197,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/setup_as_prosthetic()
 	. = ..(model ? model : /decl/prosthetics_manufacturer)
 
-/obj/item/organ/external/robotize(var/company = /decl/prosthetics_manufacturer, var/skip_prosthetics = 0, var/keep_organs = 0, var/apply_material = /decl/material/solid/metal/steel)
+/obj/item/organ/external/robotize(var/company = /decl/prosthetics_manufacturer, var/skip_prosthetics = 0, var/keep_organs = 0, var/apply_material = /decl/material/solid/metal/steel/*FAZ-WORLD EDIT START*/, var/robotize_children = TRUE /*FAZ-WORLD EDIT END*/)
 	. = ..()
 
 	slowdown = 0
@@ -1197,14 +1205,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!ispath(company, /decl/prosthetics_manufacturer))
 		PRINT_STACK_TRACE("Limb [type] robotize() was supplied a null or non-decl manufacturer: '[company]'")
 		company = /decl/prosthetics_manufacturer
-	
+
 	var/decl/prosthetics_manufacturer/R = GET_DECL(company)
 	if(!R.check_can_install(organ_tag, (owner?.get_bodytype_category() || global.using_map.default_bodytype), (owner?.get_species_name() || global.using_map.default_species)))
 		R = GET_DECL(/decl/prosthetics_manufacturer)
 
 	model = company
 	name = "[R ? R.modifier_string : "robotic"] [initial(name)]"
-	desc = "[R.desc] It looks like it was produced by [R.name]."
+	desc = "[R.desc] It looks like it was produced by [R.manufacturer_name || R.name]."
 	origin_tech = R.limb_tech
 	slowdown = R.movement_slowdown
 	max_damage *= R.hardiness
@@ -1214,8 +1222,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 	update_icon(1)
 	unmutate()
 
-	for(var/obj/item/organ/external/T in children)
-		T.robotize(company, 1)
+// FAZ-WORLD EDIT START
+	if(robotize_children)
+		for(var/obj/item/organ/external/T in children)
+			T.robotize(company, skip_prosthetics = TRUE, keep_organs = keep_organs, apply_material = apply_material)
+// FAZ-WORLD EDIT END
 
 	if(owner)
 
@@ -1416,6 +1427,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/jostle_bone(force)
 	if(!(status & ORGAN_BROKEN)) //intact bones stay still
 		return
+	if(BP_IS_PROSTHETIC(src)) // FAZ-WORLD ADDITION START
+		return // FAZ-WORLD ADDITION END
 	if(brute_dam + force < min_broken_damage/5)	//no papercuts moving bones
 		return
 	if(LAZYLEN(internal_organs) && prob(brute_dam + force))

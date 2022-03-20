@@ -72,7 +72,7 @@ var/global/list/limb_icon_cache = list()
 			icon = 'icons/mob/human_races/cyberlimbs/robotic.dmi'
 		else
 			var/decl/prosthetics_manufacturer/R = GET_DECL(model)
-			icon = R.icon
+			icon = R.get_limb_icon(src) // FAZ-WORLD EDIT
 	else if(status & ORGAN_MUTATED)
 		icon = bodytype.get_base_icon(owner, get_deform = TRUE)
 	else if(owner && (MUTATION_SKELETON in owner.mutations))
@@ -172,7 +172,7 @@ var/global/list/robot_hud_colours = list("#ffffff","#cccccc","#aaaaaa","#888888"
 	return applying
 
 /obj/item/organ/external/proc/bandage_level()
-	if(damage_state_text() == "00") 
+	if(damage_state_text() == "00")
 		return 0
 	if(!is_bandaged())
 		return 0
