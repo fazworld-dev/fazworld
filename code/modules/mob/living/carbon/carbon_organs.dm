@@ -12,14 +12,14 @@
 
 /mob/living/carbon/has_external_organs()
 	return LAZYLEN(external_organs) > 0
-	
+
 /mob/living/carbon/has_internal_organs()
 	return LAZYLEN(internal_organs) > 0
 
 /mob/living/carbon/proc/delete_organs()
 	for(var/obj/item/organ/O in get_organs())
 		remove_organ(O, FALSE, FALSE, TRUE, TRUE, FALSE) //Remove them first so we don't trigger removal effects by just calling delete on them
-	QDEL_LIST_ASSOC_VAL(organs_by_tag)
+		qdel(O)
 	organs_by_tag = null
 	internal_organs = null
 	external_organs = null
@@ -56,7 +56,7 @@
 //Should handle vital organ checks, icon updates, events
 /mob/living/carbon/on_lost_organ(var/obj/item/organ/O)
 	if(!(. = ..()))
-		return 
+		return
 
 	//Check if we should die
 	if(species.is_vital_organ(src, O))
