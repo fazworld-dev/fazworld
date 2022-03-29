@@ -1,4 +1,7 @@
-#define SPECIES_ANIMATRONIC    "Animatronic"
+#define SPECIES_ANIMATRONIC  "Animatronic"
+#define BP_ACCESS_CONTROLLER "access controller"
+#define BP_RADIO             "internal radio"
+
 /decl/modpack/animatronics
 	name = "Animatronics Modpack"
 	dreams = list(

@@ -53,7 +53,9 @@
 	has_organ = list(
 		BP_BRAIN =  /obj/item/organ/internal/mmi_holder/controlchip,
 		BP_CELL =   /obj/item/organ/internal/cell,
-		BP_EYES  =  /obj/item/organ/internal/eyes/robot
+		BP_EYES  =  /obj/item/organ/internal/eyes/robot,
+		BP_ACCESS_CONTROLLER = /obj/item/organ/internal/access_controller,
+		BP_RADIO = /obj/item/organ/internal/animatronic_radio
 	)
 	vital_organs = list(
 		BP_BRAIN = list("path" = /obj/item/organ/internal/mmi_holder/controlchip),

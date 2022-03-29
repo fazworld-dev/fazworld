@@ -9,10 +9,12 @@
 // END_PREFERENCES
 // BEGIN_INCLUDE
 #include "_animatronics.dm"
+#include "access_control.dm"
 #include "clothing.dm"
 #include "culture.dm"
 #include "limbs.dm"
 #include "organs.dm"
+#include "radio_organ.dm"
 #include "species.dm"
 #include "species_bodytypes.dm"
 #include "sprite_accessory.dm"
