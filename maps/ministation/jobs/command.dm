@@ -1,7 +1,7 @@
-/datum/job/ministation/captain
-	title = "Captain"
+/datum/job/ministation/manager
+	title = "Manager"
 	supervisors = "your profit margin, your conscience, and the Trademaster"
-	outfit_type = /decl/hierarchy/outfit/job/ministation/captain
+	outfit_type = /decl/hierarchy/outfit/job/ministation/manager
 	min_skill = list(
 		SKILL_LITERACY = SKILL_ADEPT,
 		SKILL_WEAPONS  = SKILL_ADEPT,
@@ -28,12 +28,12 @@
 	must_fill = 1
 	not_random_selectable = 1
 
-/datum/job/ministation/captain/equip(var/mob/living/carbon/human/H)
+/datum/job/ministation/manager/equip(var/mob/living/carbon/human/H)
 	. = ..()
 	if(H)
 		H.verbs |= /mob/proc/freetradeunion_rename_company
 
-/datum/job/ministation/captain/get_access()
+/datum/job/ministation/manager/get_access()
 	return get_all_station_access()
 
 /mob/proc/freetradeunion_rename_company()

@@ -15,7 +15,7 @@ var/global/exterior_broken_states = icon_states('icons/turf/exterior/broken.dmi'
 	desc = "A flat expanse of artificial stone-like artificial material."
 	icon = 'icons/turf/exterior/concrete.dmi'
 	diggable = FALSE
-	var/broken 
+	var/broken
 	var/burned
 
 /turf/exterior/concrete/flooded
@@ -49,4 +49,11 @@ var/global/exterior_broken_states = icon_states('icons/turf/exterior/broken.dmi'
 
 /turf/exterior/concrete/reinforced/road
 	name = "asphalt"
+	color = COLOR_GRAY40
+
+/turf/exterior/concrete/road
+	name = "asphalt"
+
+/turf/exterior/concrete/road/Initialize()
+	. = ..()
 	color = COLOR_GRAY40

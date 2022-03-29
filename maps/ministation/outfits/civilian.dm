@@ -1,5 +1,5 @@
 /decl/hierarchy/outfit/job/ministation/cargo
-	l_ear = /obj/item/radio/headset/headset_cargo
+	l_ear = /obj/item/radio/headset/faz_logistics
 	name = "Ministation - Job - Cargo technician"
 	uniform = /obj/item/clothing/under/cargotech
 	id_type = /obj/item/card/id/ministation/cargo
@@ -12,7 +12,6 @@
 	BACKPACK_OVERRIDE_ENGINEERING
 
 /decl/hierarchy/outfit/job/ministation/bartender
-	l_ear = /obj/item/radio/headset/headset_service
 	name = "Ministation - Job - Bartender"
 	uniform = /obj/item/clothing/under/bartender
 	id_type = /obj/item/card/id/ministation/bartender
@@ -20,14 +19,13 @@
 	head = /obj/item/clothing/head/chefhat
 
 /decl/hierarchy/outfit/job/ministation/janitor
-	l_ear = /obj/item/radio/headset/headset_service
+	l_ear = /obj/item/radio/headset/faz_logistics
 	name = "Ministation - Job - Janitor"
 	uniform = /obj/item/clothing/under/janitor
 	id_type = /obj/item/card/id/ministation/janitor
 	pda_type = /obj/item/modular_computer/pda
 
 /decl/hierarchy/outfit/job/ministation/librarian
-	l_ear = /obj/item/radio/headset/headset_service
 	name = "Ministation - Job - Librarian"
 	uniform = /obj/item/clothing/under/librarian
 	id_type = /obj/item/card/id/ministation/librarian

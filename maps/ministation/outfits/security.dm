@@ -4,7 +4,7 @@
 
 /decl/hierarchy/outfit/job/ministation/security
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	l_ear = /obj/item/radio/headset/headset_sec
+	l_ear = /obj/item/radio/headset/faz_sec
 	gloves = /obj/item/clothing/gloves/thick
 	shoes = /obj/item/clothing/shoes/jackboots
 	backpack_contents = list(/obj/item/handcuffs = 1)
@@ -31,7 +31,7 @@
 	name = "Ministation - Job - Detective"
 	head = /obj/item/clothing/head/det
 	glasses = /obj/item/clothing/glasses/sunglasses/sechud
-	l_ear = /obj/item/radio/headset/headset_sec
+	l_ear = /obj/item/radio/headset/faz_sec
 	uniform = /obj/item/clothing/under/det
 	suit = /obj/item/clothing/suit/storage/det_trench
 	l_pocket = /obj/item/flame/lighter/zippo

@@ -1,14 +1,14 @@
-/decl/hierarchy/outfit/job/ministation/captain
-	name = "Ministation - Job - Captain"
+/decl/hierarchy/outfit/job/ministation/manager
+	name = "Ministation - Job - Manager"
 	head = /obj/item/clothing/head/caphat
 	glasses = /obj/item/clothing/glasses/sunglasses
 	uniform = /obj/item/clothing/under/captain
-	l_ear = /obj/item/radio/headset/heads/captain
+	l_ear = /obj/item/radio/headset/faz_manager
 	shoes = /obj/item/clothing/shoes/color/brown
 	id_type = /obj/item/card/id/gold
 	pda_type = /obj/item/modular_computer/pda/heads/captain
 
-/decl/hierarchy/outfit/job/ministation/captain/Initialize()
+/decl/hierarchy/outfit/job/ministation/manager/Initialize()
 	. = ..()
 	backpack_overrides[/decl/backpack_outfit/backpack]      = /obj/item/storage/backpack/captain
 	backpack_overrides[/decl/backpack_outfit/satchel]       = /obj/item/storage/backpack/satchel/cap
@@ -30,7 +30,7 @@
 /decl/hierarchy/outfit/job/ministation/hop
 	name = "Ministation - Job - Lieutenant"
 	uniform = /obj/item/clothing/under/head_of_personnel
-	l_ear = /obj/item/radio/headset/heads/hop
+	l_ear = /obj/item/radio/headset/faz_hos
 	shoes = /obj/item/clothing/shoes/color/brown
 	id_type = /obj/item/card/id/silver
 	pda_type = /obj/item/modular_computer/pda/heads/hop

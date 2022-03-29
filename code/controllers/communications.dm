@@ -109,7 +109,6 @@ var/global/const/AI_FREQ	= 1343
 var/global/const/DTH_FREQ	= 1341
 var/global/const/SYND_FREQ = 1213
 var/global/const/RAID_FREQ	= 1277
-var/global/const/ENT_FREQ	= 1461
 
 // department channels
 var/global/const/PUB_FREQ = 1459
@@ -120,6 +119,7 @@ var/global/const/SCI_FREQ = 1351
 var/global/const/SRV_FREQ = 1349
 var/global/const/SUP_FREQ = 1347
 var/global/const/EXP_FREQ = 1361
+var/global/const/ENT_FREQ = 1365 // FAZ-WORLD EDIT
 
 // internal department channels
 var/global/const/MED_I_FREQ = 1485

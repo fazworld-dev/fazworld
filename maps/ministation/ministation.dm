@@ -6,23 +6,18 @@ Now poorly imported for Nebula!
 
 #if !defined(USING_MAP_DATUM)
 
-	#include "../../mods/content/xenobiology/_xenobiology.dme"
-	#include "../../mods/content/corporate/_corporate.dme"
 	#include "../../mods/species/animatronics/_animatronics.dme"
 
 	#define USING_MAP_DATUM /datum/map/ministation
 
 	#include "ministation.dmm"
-	#include "space.dmm"
 	#include "ministation_unit_testing.dm"
 
-	#include "ministation_antagonists.dm"
 	#include "ministation_areas.dm"
 	#include "ministation_departments.dm"
+	#include "ministation_headsets.dm"
 	#include "ministation_telecomms.dm"
 	#include "ministation_jobs.dm"
-	#include "ministation_shuttles.dm"
-	#include "ministation_objects.dm"
 
 	#include "jobs/animatronics.dm"
 	#include "jobs/command.dm"
