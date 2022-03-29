@@ -1,5 +1,5 @@
 // defaults
-#define DEFAULT_WALL_MATERIAL       /decl/material/solid/metal/steel
+#define DEFAULT_WALL_MATERIAL       /decl/material/solid/wood
 #define DEFAULT_FURNITURE_MATERIAL  /decl/material/solid/metal/aluminium
 
 #define MAT_FLAG_ALTERATION_NONE    BITFLAG(0)
