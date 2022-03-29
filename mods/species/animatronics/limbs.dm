@@ -6,7 +6,7 @@
 	icon = 'mods/species/animatronics/icons/body.dmi'
 	skintone = FALSE
 	species_restricted = list(SPECIES_ANIMATRONIC)
-	limb_blend = ICON_ADD
+	limb_blend = ICON_MULTIPLY
 	modular_prosthetic_tier = MODULAR_BODYPART_INVALID
 
 /decl/prosthetics_manufacturer/animatronic
@@ -14,13 +14,18 @@
 	modifier_string = "animatronic"
 	limb_blend = ICON_MULTIPLY
 	skintone = FALSE
+	hardiness = 0.5
 	modular_prosthetic_tier = MODULAR_BODYPART_INVALID
+	abstract_type = /decl/prosthetics_manufacturer/animatronic
 
 /decl/prosthetics_manufacturer/animatronic/on_fracture(var/obj/item/organ/external/org)
+	playsound(org.loc, "fracture", 100, 1, -2)
 	if(org.status & ORGAN_DISFIGURED)
-		org.status &= ~ORGAN_DISFIGURED
-		org.status &= ~ORGAN_BROKEN
+		org.rejuvenate()
 		org.robotize(/decl/prosthetics_manufacturer/endoskeleton, keep_organs = TRUE, robotize_children = FALSE)
+		owner.visible_message(SPAN_DANGER("\The [org.owner]'s [org.name] shatters and falls apart!"),	\
+			SPAN_DANGER("Your [org.name] shatters and falls apart!"),	\
+			SPAN_DANGER("You hear a sickening crunch."))
 	else
 		org.disfigure("brute")
 		org.update_icon()

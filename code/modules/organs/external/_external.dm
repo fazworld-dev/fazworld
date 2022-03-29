@@ -929,6 +929,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(BP_IS_CRYSTAL(src))
 		disintegrate = DISMEMBER_METHOD_BLUNT //splut
 
+	// FAZ-WORLD EDIT
+	if(!disintegrate)
+		return
+
 	var/list/organ_msgs = get_droplimb_messages_for(disintegrate, clean)
 	if(LAZYLEN(organ_msgs) >= 3)
 		owner.visible_message("<span class='danger'>[organ_msgs[1]]</span>", \
