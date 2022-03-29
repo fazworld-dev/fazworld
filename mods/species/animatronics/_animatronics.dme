@@ -15,5 +15,6 @@
 #include "organs.dm"
 #include "species.dm"
 #include "species_bodytypes.dm"
+#include "sprite_accessory.dm"
 // END_INCLUDE
 #endif
