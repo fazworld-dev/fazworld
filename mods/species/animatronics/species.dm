@@ -85,8 +85,8 @@
 /decl/species/animatronic/disfigure_msg(var/mob/living/carbon/human/H)
 	var/decl/pronouns/G = H.get_pronouns()
 	if(H.bodytype?.type == /decl/bodytype/animatronic)
-		return SPAN_DANGER("[G.his] endoskeleton is heavily damaged!\n")
-	return SPAN_DANGER("[G.his] outer casing is shattered and cracked!\n")
+		return SPAN_DANGER("[G.His] endoskeleton is heavily damaged!\n")
+	return SPAN_DANGER("[G.His] outer casing is shattered and cracked!\n")
 
 /decl/species/animatronic/get_root_species_name(mob/living/carbon/human/H)
 	. = ..()

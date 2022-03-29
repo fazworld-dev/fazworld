@@ -3,6 +3,7 @@
 	uniform = null
 	id_type = null
 	pda_type = null
+	shoes = null
 
 /decl/hierarchy/outfit/job/ministation/animatronic/freddy_fazbear
 	name = "Ministation - Job - Freddy Fazbear"
