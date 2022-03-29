@@ -2,8 +2,8 @@
 	var/datum/gas_mixture/exterior_atmosphere
 	var/exterior_atmos_temp = T20C
 	var/list/exterior_atmos_composition = list(
-		/decl/material/gas/oxygen = O2STANDARD,
-		/decl/material/gas/nitrogen = N2STANDARD
+		/decl/material/gas/oxygen = MOLES_O2STANDARD,
+		/decl/material/gas/nitrogen = MOLES_N2STANDARD
 	)
 
 /datum/map/proc/build_exterior_atmosphere()
