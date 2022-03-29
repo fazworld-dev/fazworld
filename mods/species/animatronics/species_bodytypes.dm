@@ -12,8 +12,8 @@
 	var/decl/bodytype/animatronic/animatronic_type = H.bodytype
 	if(!istype(animatronic_type))
 		return ..()
-	if(H.h_style != animatronic_type.default_h_style)
-		H.h_style = animatronic_type.default_h_style
+	if(H.h_style != animatronic_type.default_hair_style)
+		H.h_style = animatronic_type.default_hair_style
 		. = TRUE
 	if(.)
 		H.update_hair()

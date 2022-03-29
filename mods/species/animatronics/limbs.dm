@@ -23,7 +23,7 @@
 	if(org.status & ORGAN_DISFIGURED)
 		org.rejuvenate()
 		org.robotize(/decl/prosthetics_manufacturer/endoskeleton, keep_organs = TRUE, robotize_children = FALSE)
-		owner.visible_message(SPAN_DANGER("\The [org.owner]'s [org.name] shatters and falls apart!"),	\
+		org.owner.visible_message(SPAN_DANGER("\The [org.owner]'s [org.name] shatters and falls apart!"),	\
 			SPAN_DANGER("Your [org.name] shatters and falls apart!"),	\
 			SPAN_DANGER("You hear a sickening crunch."))
 	else
