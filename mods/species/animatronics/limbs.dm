@@ -21,11 +21,11 @@
 /decl/prosthetics_manufacturer/animatronic/on_fracture(var/obj/item/organ/external/org)
 	playsound(org.loc, "fracture", 100, 1, -2)
 	if(org.status & ORGAN_DISFIGURED)
-		org.rejuvenate()
-		org.robotize(/decl/prosthetics_manufacturer/endoskeleton, keep_organs = TRUE, robotize_children = FALSE)
 		org.owner.visible_message(SPAN_DANGER("\The [org.owner]'s [org.name] shatters and falls apart!"),	\
 			SPAN_DANGER("Your [org.name] shatters and falls apart!"),	\
 			SPAN_DANGER("You hear a sickening crunch."))
+		org.rejuvenate()
+		org.robotize(/decl/prosthetics_manufacturer/endoskeleton, keep_organs = TRUE, robotize_children = FALSE)
 	else
 		org.disfigure("brute")
 		org.update_icon()
