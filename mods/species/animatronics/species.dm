@@ -75,8 +75,8 @@
 	var/our_model = istype(A) ? A.model : /decl/prosthetics_manufacturer/endoskeleton
 	if(istype(E) && (!BP_IS_PROSTHETIC(E) || (E.model != our_model)))
 		E.robotize(our_model)
-	var/obj/item/organ/external/head/head = org
 /*
+	var/obj/item/organ/external/head/head = org
 	if(istype(head))
 		head.glowing_eyes = TRUE
 	var/obj/item/organ/internal/eyes/eyes = org
