@@ -930,7 +930,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		disintegrate = DISMEMBER_METHOD_BLUNT //splut
 
 	// FAZ-WORLD EDIT
-	if(!disintegrate)
+	if(isnull(disintegrate))
 		return
 
 	var/list/organ_msgs = get_droplimb_messages_for(disintegrate, clean)
