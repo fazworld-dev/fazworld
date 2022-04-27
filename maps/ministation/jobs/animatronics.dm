@@ -27,7 +27,7 @@
 	if(old_tail)
 		qdel(old_tail)
 	if(new_bodytype.has_tail)
-		var/obj/item/organ/external/tail/animatronic/new_tail = new
+		var/obj/item/organ/external/tail/animatronic/new_tail = new (src, null, H.dna)
 		H.add_organ(new_tail, H.get_organ(BP_GROIN))
 		new_tail.robotize(new_bodytype.model)
 	H.change_hair(new_bodytype.default_hair_style)
