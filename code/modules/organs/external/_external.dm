@@ -1238,7 +1238,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 // FAZ-WORLD EDIT START
 	if(robotize_children)
 		for(var/obj/item/organ/external/T in children)
-			T.robotize(company, skip_prosthetics = TRUE, keep_organs = keep_organs, apply_material = apply_material)
+			T.robotize(company, skip_prosthetics = TRUE, keep_organs = keep_organs, apply_material = apply_material, robotize_children = robotize_children)
 // FAZ-WORLD EDIT END
 
 	if(owner)
