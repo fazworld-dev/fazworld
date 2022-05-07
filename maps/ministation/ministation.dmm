@@ -682,7 +682,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/kitchen)
 "wB" = (
-/obj/machinery/power/port_gen/pacman,
+/obj/machinery/port_gen/pacman,
 /obj/structure/cable{
 	icon_state = "0-6"
 	},
