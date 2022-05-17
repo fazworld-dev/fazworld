@@ -4,7 +4,7 @@ SUBSYSTEM_DEF(skybox)
 	name = "Space skybox"
 	init_order = SS_INIT_SKYBOX
 	flags = SS_NO_FIRE
-	var/background_color = COLOR_WHITE
+	var/background_color = COLOR_WHITE // FAZ-WORLD EDIT
 	var/skybox_icon = 'icons/skybox/skybox.dmi' //Path to our background. Lets us use anything we damn well please. Skyboxes need to be 736x736
 	var/background_icon = "dyable"
 	var/use_stars = TRUE
