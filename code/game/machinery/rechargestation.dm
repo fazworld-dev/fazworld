@@ -30,6 +30,9 @@
 /obj/machinery/recharge_station/receive_mouse_drop(var/atom/dropping, var/mob/user)
 	. = ..()
 	if(!. && isliving(dropping))
+		var/mob/living/M = dropping
+		if(M.anchored)
+			return FALSE
 		user.visible_message( \
 			SPAN_NOTICE("\The [user] begins placing \the [dropping] into \the [src]."), \
 			SPAN_NOTICE("You start placing \the [dropping] into \the [src]."))
@@ -178,11 +181,8 @@
 
 /obj/machinery/recharge_station/proc/go_in(var/mob/M)
 
-	if(occupant)
+	if(occupant || M.anchored /*|| !hascell(M)*/) // FAZ-WORLD EDIT
 		return
-
-/*	if(!hascell(M)) // FAZ-WORLD EDIT
-		return */
 
 	add_fingerprint(M)
 	M.reset_view(src)
