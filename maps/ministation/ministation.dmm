@@ -34,7 +34,7 @@
 	},
 /obj/structure/door/wood,
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "bu" = (
 /obj/structure/cable/green{
 	icon_state = "6-8"
@@ -60,7 +60,7 @@
 "cn" = (
 /obj/structure/door/plastic,
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "cu" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/janitor)
@@ -159,7 +159,7 @@
 "fJ" = (
 /obj/structure/hygiene/toilet,
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "fP" = (
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/techmaint,
@@ -320,7 +320,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "kV" = (
 /obj/effect/floor_decal/corner/white/border{
 	dir = 8
@@ -781,7 +781,7 @@
 /area/pizzeria/staff/power)
 "Ae" = (
 /turf/simulated/wall/wood,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "Af" = (
 /obj/structure/bed/chair/comfy/captain,
 /obj/machinery/light{
@@ -866,7 +866,7 @@
 	pixel_x = 26
 	},
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "Bx" = (
 /turf/simulated/wall/wood,
 /area/pizzeria/staff/backstage)
@@ -926,7 +926,7 @@
 /area/pizzeria/outside)
 "CS" = (
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "CX" = (
 /obj/machinery/light_switch{
 	default_pixel_y = 32;
@@ -1164,7 +1164,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "KG" = (
 /obj/machinery/computer/modular/preset/security{
 	dir = 1
@@ -1225,7 +1225,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "Mx" = (
 /obj/structure/mattress,
 /obj/item/bedsheet/yellow{
@@ -1518,7 +1518,7 @@
 	icon_state = "0-6"
 	},
 /turf/simulated/floor/tiled/white,
-/area/pizzeria/outside)
+/area/pizzeria/bathroom)
 "Us" = (
 /obj/machinery/power/apc{
 	dir = 4
