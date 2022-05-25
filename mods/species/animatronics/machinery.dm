@@ -21,3 +21,8 @@
 
 /obj/machinery/cryopod/animatronic/check_occupant_allowed(mob/M)
 	return ..() && isspecies(M, SPECIES_ANIMATRONIC)
+
+/obj/item/stock_parts/circuitboard/animatronicstoragecontrol
+	name = "Circuit board (Animatronic Storage Console)"
+	build_path = /obj/machinery/computer/cryopod/animatronic
+	origin_tech = "{'programming':3}"
