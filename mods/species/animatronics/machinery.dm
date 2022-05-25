@@ -26,3 +26,6 @@
 	name = "Circuit board (Animatronic Storage Console)"
 	build_path = /obj/machinery/computer/cryopod/animatronic
 	origin_tech = "{'programming':3}"
+
+/datum/fabricator_recipe/imprinter/circuit/animatronic_storage
+	path = /obj/item/stock_parts/circuitboard/animatronicstoragecontrol
