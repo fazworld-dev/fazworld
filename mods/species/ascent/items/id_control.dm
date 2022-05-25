@@ -37,13 +37,15 @@
 	status = ORGAN_PROSTHETIC
 	var/obj/item/card/id/id_card = /obj/item/card/id/ascent
 
-/obj/item/organ/internal/controller/do_install(mob/living/carbon/human/target, obj/item/organ/external/affected)
-	if(!(. = ..()) || !owner)
+/obj/item/organ/internal/controller/do_install(mob/living/carbon/human/target, obj/item/organ/external/affected, in_place, update_icon, detached)
+	. = ..()
+	if(detached || !owner)
 		return
+
 	var/datum/extension/access_provider/owner_access = get_or_create_extension(owner, /datum/extension/access_provider)
 	owner_access?.register_id(src)
-	owner?.set_id_info(id_card)
-	owner?.add_language(/decl/language/mantid/worldnet)
+	owner.set_id_info(id_card)
+	owner.add_language(/decl/language/mantid/worldnet)
 
 /obj/item/organ/internal/controller/do_uninstall(in_place, detach, ignore_children)
 	var/mob/living/carbon/H = owner
