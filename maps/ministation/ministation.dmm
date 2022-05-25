@@ -285,6 +285,9 @@
 /obj/machinery/camera{
 	dir = 1
 	},
+/obj/machinery/computer/cryopod/animatronic{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "jp" = (
@@ -407,7 +410,7 @@
 /area/pizzeria/dining)
 "nn" = (
 /obj/machinery/atmospherics/unary/vent_pump,
-/obj/machinery/cryopod/robot,
+/obj/machinery/cryopod/animatronic,
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "ny" = (
@@ -491,7 +494,7 @@
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
 "pN" = (
-/obj/machinery/cryopod/robot,
+/obj/machinery/cryopod/animatronic,
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "ql" = (
@@ -698,7 +701,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "wZ" = (
-/obj/machinery/cryopod/robot,
+/obj/machinery/cryopod/animatronic,
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "xy" = (
@@ -932,6 +935,7 @@
 	default_pixel_y = 32;
 	pixel_y = 32
 	},
+/obj/abstract/landmark/latejoin/animatronic,
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "Dm" = (
@@ -987,6 +991,15 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
+"EJ" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/computer/cryopod/animatronic{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/pizzeria/staff/maintenance)
 "EO" = (
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
@@ -1121,6 +1134,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff)
+"IZ" = (
+/obj/abstract/landmark/latejoin/animatronic,
+/turf/simulated/floor/tiled/techmaint,
+/area/pizzeria/staff/maintenance)
 "Ju" = (
 /obj/structure/door/wood{
 	dir = 4
@@ -1194,6 +1211,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/abstract/landmark/latejoin/animatronic,
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "Lt" = (
@@ -1268,6 +1286,7 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
+/obj/abstract/landmark/latejoin/animatronic,
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "NF" = (
@@ -1519,6 +1538,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/bathroom)
+"Uk" = (
+/obj/abstract/landmark/latejoin/animatronic,
+/turf/simulated/floor/tiled/steel_grid,
+/area/pizzeria/staff/backstage)
 "Us" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -6132,7 +6155,7 @@ CX
 ZQ
 ZQ
 ZQ
-ZQ
+Uk
 EZ
 ne
 ne
@@ -6848,7 +6871,7 @@ Wb
 Xt
 Iz
 NI
-ru
+EJ
 Ax
 OG
 RN
@@ -7053,7 +7076,7 @@ Co
 Ql
 RN
 wZ
-wS
+IZ
 ci
 RN
 fS
@@ -7155,7 +7178,7 @@ cu
 Im
 RN
 nn
-wS
+IZ
 My
 RN
 fS

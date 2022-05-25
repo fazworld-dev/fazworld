@@ -13,6 +13,7 @@
 #include "clothing.dm"
 #include "culture.dm"
 #include "limbs.dm"
+#include "machinery.dm"
 #include "organs.dm"
 #include "radio_organ.dm"
 #include "species.dm"

@@ -8,6 +8,7 @@
 	minimal_access = list()
 	outfit_type = /decl/hierarchy/outfit/job/ministation_guest
 	department_types = list(/decl/department/guest)
+	hud_icon = "hudassistant"
 
 /datum/job/ministation/assistant
 	title = "Attendant"
@@ -20,6 +21,7 @@
 	alt_titles = list("Guest Service Attendant", "Entertainment Attendant")
 	outfit_type = /decl/hierarchy/outfit/job/ministation_assistant
 	department_types = list(/decl/department/entertainment)
+	hud_icon = "hudassistant"
 
 /datum/job/ministation/assistant/get_access()
 	if(config.assistant_maint)
@@ -36,7 +38,7 @@
 /datum/job/ministation/bartender
 	title = "Bartender"
 	alt_titles = list("Cook","Barista")
-	supervisors = "the Lieutenant and the Captain"
+	supervisors = "the Manager"
 	total_positions = 1
 	spawn_positions = 1
 	outfit_type = /decl/hierarchy/outfit/job/ministation/bartender

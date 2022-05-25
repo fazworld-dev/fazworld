@@ -11,8 +11,6 @@
 	loadout_allowed = FALSE
 	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/freddy_fazbear
 	hud_icon = "hudblank"
-	skill_points = 0
-	no_skill_buffs = TRUE
 	guestbanned = TRUE
 	not_random_selectable = TRUE
 	department_types = list(/decl/department/entertainment)
@@ -47,9 +45,9 @@
 /datum/job/ministation/animatronic/monty
 	title = "Montgomery Gator Animatronic"
 	animatronic_bodytype = /decl/bodytype/animatronic/monty
-	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic///monty
+	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/monty
 
 /datum/job/ministation/animatronic/roxy
 	title = "Roxanne Wolf Animatronic"
 	animatronic_bodytype = /decl/bodytype/animatronic/roxy
-	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic///roxy
+	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/roxy
