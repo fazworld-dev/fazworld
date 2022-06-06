@@ -312,6 +312,10 @@
 /obj/structure/wall_frame,
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/outside/patio)
+"ki" = (
+/obj/machinery/network/mainframe,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "kn" = (
 /obj/effect/floor_decal/spline/plain/yellow{
 	dir = 4
@@ -386,6 +390,12 @@
 /obj/machinery/light_switch{
 	default_pixel_x = -32;
 	pixel_x = -32
+	},
+/obj/structure/cable/green{
+	icon_state = "1-10"
+	},
+/obj/machinery/light{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
@@ -519,12 +529,6 @@
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
 "qu" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/structure/cable/green{
-	icon_state = "5-8"
-	},
 /obj/machinery/camera{
 	dir = 1
 	},
@@ -653,6 +657,17 @@
 /obj/structure/wall_frame,
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
+"vh" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/network/router/wall_mounted{
+	dir = 8;
+	initial_network_id = "fazent";
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "vt" = (
 /obj/effect/floor_decal/corner/white/border,
 /obj/effect/floor_decal/spline/plain/yellow{
@@ -663,6 +678,10 @@
 	},
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
+"vw" = (
+/obj/machinery/telecomms/bus/preset_one/ministation,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "vP" = (
 /obj/structure/table/woodentable,
 /turf/simulated/floor/wood/walnut,
@@ -685,10 +704,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/kitchen)
 "wB" = (
-/obj/machinery/port_gen/pacman,
-/obj/structure/cable{
-	icon_state = "0-6"
-	},
+/obj/machinery/telecomms/broadcaster/preset_right,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "wI" = (
@@ -705,9 +721,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "xy" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
+/obj/machinery/telecomms/receiver/preset_right,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "yz" = (
@@ -738,6 +752,19 @@
 /obj/machinery/chem_master/condimaster,
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
+"zj" = (
+/obj/machinery/power/smes/buildable/preset{
+	_fully_charged = 1;
+	_input_maxed = 1;
+	_input_on = 1;
+	_output_maxed = 1;
+	_output_on = 1
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "zo" = (
 /obj/structure/door/wood,
 /obj/effect/floor_decal/corner/grey/diagonal,
@@ -749,12 +776,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
-"zt" = (
-/obj/structure/cable/green{
-	icon_state = "5-10"
-	},
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/pizzeria/staff/power)
 "zG" = (
 /obj/structure/janitorialcart,
 /turf/simulated/floor/tiled/techmaint,
@@ -770,16 +791,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/maintenance)
 "zS" = (
-/obj/machinery/power/smes/buildable/preset{
-	_fully_charged = 1;
-	_input_maxed = 1;
-	_input_on = 1;
-	_output_maxed = 1;
-	_output_on = 1
-	},
-/obj/structure/cable/green{
-	icon_state = "0-10"
-	},
+/obj/machinery/telecomms/processor/preset_one/ministation,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "Ae" = (
@@ -965,15 +977,6 @@
 /turf/simulated/wall/wood,
 /area/pizzeria/staff/power)
 "Ep" = (
-/obj/machinery/light{
-	dir = 4
-	},
-/obj/structure/cable{
-	icon_state = "0-9"
-	},
-/obj/machinery/power/terminal{
-	dir = 1
-	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "Eq" = (
@@ -1194,6 +1197,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff)
+"KN" = (
+/obj/machinery/network/acl{
+	initial_network_id = "fazent"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "KQ" = (
 /obj/machinery/light{
 	dir = 8
@@ -1304,7 +1313,7 @@
 	dir = 4
 	},
 /obj/structure/cable/green{
-	icon_state = "4-8"
+	icon_state = "5-8"
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
@@ -1347,12 +1356,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/stage)
 "OO" = (
-/obj/machinery/power/apc{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "0-8"
-	},
+/obj/machinery/telecomms/hub/preset/ministation,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "OW" = (
@@ -1466,7 +1470,13 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
 "Sf" = (
-/obj/structure/table,
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	icon_state = "0-2"
+	},
+/obj/structure/cable/green,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "Su" = (
@@ -1587,6 +1597,12 @@
 	},
 /turf/simulated/wall/wood,
 /area/pizzeria/staff/stage)
+"Wz" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "WH" = (
 /obj/structure/table/woodentable,
 /obj/effect/floor_decal/corner/grey/diagonal,
@@ -1595,6 +1611,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
+"WJ" = (
+/obj/machinery/telecomms/server/presets/ministation,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
+"WL" = (
+/obj/machinery/power/terminal{
+	dir = 8
+	},
+/obj/machinery/port_gen/pacman,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/pizzeria/staff/power)
 "Xg" = (
 /obj/machinery/light_switch{
 	default_pixel_y = -32;
@@ -7059,8 +7086,8 @@ ip
 NF
 XV
 XV
-XV
-XV
+Ej
+Ej
 Ej
 Ej
 Ej
@@ -7161,9 +7188,9 @@ ip
 NF
 XV
 XV
-XV
-XV
 Ej
+zj
+Wz
 Sf
 mU
 qu
@@ -7263,11 +7290,11 @@ ip
 NF
 XV
 XV
-XV
-XV
 Ej
+WL
+Ep
 wB
-zt
+Ep
 xy
 Ej
 go
@@ -7365,9 +7392,9 @@ ip
 NF
 XV
 XV
-XV
-XV
 Ej
+KN
+Ep
 zS
 Ep
 OO
@@ -7467,12 +7494,12 @@ ip
 NF
 XV
 XV
-XV
-XV
 Ej
-Ej
-Ej
-Ej
+ki
+vh
+vw
+Ep
+WJ
 Ej
 Oj
 Oj
@@ -7569,13 +7596,13 @@ ip
 NF
 XV
 XV
-XV
-XV
-XV
-XV
-XV
-XV
-XV
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
+Ej
 XV
 XV
 XV
