@@ -15,4 +15,5 @@
 		/datum/job/ministation/animatronic,
 		/datum/job/ministation/animatronic/roxy,
 		/datum/job/ministation/animatronic/monty,
+		/datum/job/ministation/animatronic/glam_chica,
 	)

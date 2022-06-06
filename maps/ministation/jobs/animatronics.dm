@@ -9,7 +9,7 @@
 	account_allowed = FALSE
 	economic_power = 0
 	loadout_allowed = FALSE
-	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/freddy_fazbear
+	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/glam_freddy
 	hud_icon = "hudblank"
 	guestbanned = TRUE
 	not_random_selectable = TRUE
@@ -51,3 +51,8 @@
 	title = "Roxanne Wolf Animatronic"
 	animatronic_bodytype = /decl/bodytype/animatronic/roxy
 	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/roxy
+
+/datum/job/ministation/animatronic/glam_chica
+	title = "Glamrock Chica Animatronic"
+	animatronic_bodytype = /decl/bodytype/animatronic/glam_chica
+	outfit_type = /decl/hierarchy/outfit/job/ministation/animatronic/glam_chica
