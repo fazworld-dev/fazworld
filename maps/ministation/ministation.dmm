@@ -1595,6 +1595,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
+"Xa" = (
+/obj/effect/overmap/visitable/sector/pizzeria,
+/turf/exterior/grass,
+/area/pizzeria/outside)
 "Xg" = (
 /obj/machinery/light_switch{
 	default_pixel_y = -32;
@@ -1826,7 +1830,7 @@ XV
 XV
 XV
 XV
-XV
+Xa
 "}
 (2,1,1) = {"
 XV
