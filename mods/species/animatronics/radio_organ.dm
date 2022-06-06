@@ -13,6 +13,9 @@
 	if (istype(radio) && radio.owner)
 		return radio.owner.get_organ(BP_CELL)
 
+/obj/item/radio/headset/animatronic/receive_range(freq, level, aiOverride = TRUE)
+	..(freq, level, aiOverride)
+
 /obj/item/encryptionkey/animatronic_integrated
 	name = "animatronic integrated encryption key"
 	desc = "Integrated encryption key."

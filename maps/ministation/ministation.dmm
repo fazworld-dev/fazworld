@@ -721,7 +721,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "xy" = (
-/obj/machinery/telecomms/receiver/preset_right,
+/obj/machinery/telecomms/receiver/preset_pizzeria,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "yz" = (
