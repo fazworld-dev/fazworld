@@ -408,11 +408,6 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
-"nn" = (
-/obj/machinery/atmospherics/unary/vent_pump,
-/obj/machinery/cryopod/animatronic,
-/turf/simulated/floor/tiled/techmaint,
-/area/pizzeria/staff/maintenance)
 "ny" = (
 /obj/effect/floor_decal/corner/white/border{
 	dir = 4
@@ -1165,11 +1160,6 @@
 	},
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
-"Kj" = (
-/obj/machinery/atmospherics/unary/vent_pump,
-/obj/structure/table,
-/turf/simulated/floor/tiled/techfloor,
-/area/pizzeria/staff/security)
 "Kx" = (
 /obj/machinery/light{
 	dir = 4
@@ -1698,12 +1688,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
-"ZD" = (
-/obj/machinery/atmospherics/unary/vent_pump,
-/obj/structure/table/woodentable,
-/obj/item/chems/food/sliceable/pizza/vegetablepizza,
-/turf/simulated/floor/wood/walnut,
-/area/pizzeria/dining)
 "ZG" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/effect/floor_decal/corner/white/diagonal{
@@ -5353,7 +5337,7 @@ fS
 KQ
 fS
 RZ
-ZD
+TK
 Ym
 Ym
 Ym
@@ -6456,7 +6440,7 @@ XV
 be
 Qz
 Xm
-Kj
+rn
 op
 Ay
 KI
@@ -7181,7 +7165,7 @@ fv
 cu
 Im
 RN
-nn
+wZ
 IZ
 My
 RN
