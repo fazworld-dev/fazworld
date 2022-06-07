@@ -49,6 +49,7 @@
 /decl/prosthetics_manufacturer/animatronic/glam_chica
 	name = "Glamrock Chica"
 	desc = "This robotic limb was designed for Glamrock Chica."
+	icon = 'mods/species/animatronics/icons/glamrock_chica.dmi'
 
 /decl/prosthetics_manufacturer/animatronic/freddy_fazbear
 	name = "Freddy Fazbear"
