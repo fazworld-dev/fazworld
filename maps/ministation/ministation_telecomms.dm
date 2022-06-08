@@ -1,5 +1,11 @@
 var/global/const/ANI_FREQ = 1363
 
+/hook/global_init/proc/radiochannels_hook()
+	radiochannels["Animatronic Private"] = ANI_FREQ
+	radiochannels -= "AI Private"
+	radiochannels -= "Common"
+	return TRUE
+
 /obj/machinery/telecomms/bus/preset_one/ministation
 	id = "Bus"
 	network = "tcommsat"
@@ -30,3 +36,9 @@ var/global/const/ANI_FREQ = 1363
 	id = "Hub"
 	network = "tcommsat"
 	autolinkers = list("hub","receiverA", "broadcasterA")
+
+/obj/machinery/telecomms/receiver/preset_pizzeria
+	id = "Receiver A"
+	network = "tcommsat"
+	autolinkers = list("receiverA") // link to relay
+	freq_listening = list(ANI_FREQ, SCI_FREQ, MED_FREQ, SUP_FREQ, SRV_FREQ, COMM_FREQ, ENG_FREQ, SEC_FREQ, ENT_FREQ)
