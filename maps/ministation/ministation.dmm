@@ -1610,6 +1610,9 @@
 	dir = 8
 	},
 /obj/machinery/port_gen/pacman,
+/obj/structure/cable{
+	icon_state = "0-8"
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
 "Xa" = (
