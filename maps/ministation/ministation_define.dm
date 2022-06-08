@@ -15,6 +15,8 @@
 
 	default_law_type = /datum/ai_laws/nanotrasen
 
+	overmap_ids = list(OVERMAP_ID_SPACE)
+
 	lobby_screens = list('maps/ministation/ministation_lobby.png')
 
 	//TEMPORARY NOTE: Evac messages are temporary until its set up properly. Make sure they're changed later.
