@@ -66,7 +66,7 @@
 /area/pizzeria/staff/janitor)
 "cD" = (
 /obj/structure/bed/chair/comfy/captain,
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -282,7 +282,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "jh" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /obj/machinery/computer/cryopod/animatronic{
@@ -506,7 +506,7 @@
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
 	},
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /turf/exterior/concrete/road,
@@ -524,7 +524,7 @@
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
 "qu" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -595,7 +595,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
 "sm" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -634,7 +634,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
 "uA" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -832,7 +832,7 @@
 /area/pizzeria/staff/kitchen)
 "Bd" = (
 /obj/structure/table/woodentable,
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -1117,7 +1117,7 @@
 	default_pixel_y = -32;
 	pixel_y = -32
 	},
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1234,7 +1234,7 @@
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
 "Mn" = (
-/obj/machinery/camera/security,
+/obj/machinery/camera/network/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff)
 "Mv" = (
@@ -1254,7 +1254,7 @@
 /obj/structure/cable/green{
 	icon_state = "6-8"
 	},
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1475,7 +1475,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/stage)
 "SE" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/grey/diagonal,
@@ -1565,7 +1565,7 @@
 /area/pizzeria/staff/stage)
 "Vp" = (
 /obj/machinery/floor_light/prebuilt,
-/obj/machinery/camera/security,
+/obj/machinery/camera/network/security,
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/stage)
 "Wb" = (
@@ -1655,7 +1655,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "Xz" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1735,7 +1735,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "ZU" = (
-/obj/machinery/camera/security{
+/obj/machinery/camera/network/security{
 	dir = 1
 	},
 /turf/simulated/floor/wood/walnut,
