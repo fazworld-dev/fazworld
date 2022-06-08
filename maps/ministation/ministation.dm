@@ -19,6 +19,7 @@ Now poorly imported for Nebula!
 	#include "ministation_telecomms.dm"
 	#include "ministation_jobs.dm"
 	#include "pizzeria_spawnpoints.dm"
+	#include "pizzeria_overmap.dm"
 
 	#include "jobs/animatronics.dm"
 	#include "jobs/command.dm"

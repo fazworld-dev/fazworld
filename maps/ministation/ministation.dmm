@@ -66,7 +66,7 @@
 /area/pizzeria/staff/janitor)
 "cD" = (
 /obj/structure/bed/chair/comfy/captain,
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 4
 	},
 /obj/machinery/light{
@@ -282,7 +282,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff/maintenance)
 "jh" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /obj/machinery/computer/cryopod/animatronic{
@@ -418,11 +418,6 @@
 	},
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
-"nn" = (
-/obj/machinery/atmospherics/unary/vent_pump,
-/obj/machinery/cryopod/animatronic,
-/turf/simulated/floor/tiled/techmaint,
-/area/pizzeria/staff/maintenance)
 "ny" = (
 /obj/effect/floor_decal/corner/white/border{
 	dir = 4
@@ -511,7 +506,7 @@
 /obj/effect/floor_decal/industrial/loading{
 	dir = 8
 	},
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /turf/exterior/concrete/road,
@@ -529,7 +524,7 @@
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
 "qu" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -600,7 +595,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
 "sm" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -639,7 +634,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/dining)
 "uA" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /obj/machinery/light{
@@ -837,7 +832,7 @@
 /area/pizzeria/staff/kitchen)
 "Bd" = (
 /obj/structure/table/woodentable,
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 8
 	},
 /obj/machinery/light{
@@ -1122,7 +1117,7 @@
 	default_pixel_y = -32;
 	pixel_y = -32
 	},
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1168,11 +1163,6 @@
 	},
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
-"Kj" = (
-/obj/machinery/atmospherics/unary/vent_pump,
-/obj/structure/table,
-/turf/simulated/floor/tiled/techfloor,
-/area/pizzeria/staff/security)
 "Kx" = (
 /obj/machinery/light{
 	dir = 4
@@ -1244,7 +1234,7 @@
 /turf/exterior/concrete/road,
 /area/pizzeria/outside)
 "Mn" = (
-/obj/machinery/camera,
+/obj/machinery/camera/security,
 /turf/simulated/floor/tiled/techmaint,
 /area/pizzeria/staff)
 "Mv" = (
@@ -1264,7 +1254,7 @@
 /obj/structure/cable/green{
 	icon_state = "6-8"
 	},
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1485,7 +1475,7 @@
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/stage)
 "SE" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 8
 	},
 /obj/effect/floor_decal/corner/grey/diagonal,
@@ -1575,7 +1565,7 @@
 /area/pizzeria/staff/stage)
 "Vp" = (
 /obj/machinery/floor_light/prebuilt,
-/obj/machinery/camera,
+/obj/machinery/camera/security,
 /turf/simulated/floor/wood/walnut,
 /area/pizzeria/staff/stage)
 "Wb" = (
@@ -1622,6 +1612,10 @@
 /obj/machinery/port_gen/pacman,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/pizzeria/staff/power)
+"Xa" = (
+/obj/effect/overmap/visitable/sector/pizzeria,
+/turf/exterior/grass,
+/area/pizzeria/outside)
 "Xg" = (
 /obj/machinery/light_switch{
 	default_pixel_y = -32;
@@ -1661,7 +1655,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "Xz" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
@@ -1721,12 +1715,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/pizzeria/staff/kitchen)
-"ZD" = (
-/obj/machinery/atmospherics/unary/vent_pump,
-/obj/structure/table/woodentable,
-/obj/item/chems/food/sliceable/pizza/vegetablepizza,
-/turf/simulated/floor/wood/walnut,
-/area/pizzeria/dining)
 "ZG" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/effect/floor_decal/corner/white/diagonal{
@@ -1747,7 +1735,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/pizzeria/staff/backstage)
 "ZU" = (
-/obj/machinery/camera{
+/obj/machinery/camera/security{
 	dir = 1
 	},
 /turf/simulated/floor/wood/walnut,
@@ -1853,7 +1841,7 @@ XV
 XV
 XV
 XV
-XV
+Xa
 "}
 (2,1,1) = {"
 XV
@@ -5376,7 +5364,7 @@ fS
 KQ
 fS
 RZ
-ZD
+TK
 Ym
 Ym
 Ym
@@ -6479,7 +6467,7 @@ XV
 be
 Qz
 Xm
-Kj
+rn
 op
 Ay
 KI
@@ -7204,7 +7192,7 @@ fv
 cu
 Im
 RN
-nn
+wZ
 IZ
 My
 RN
