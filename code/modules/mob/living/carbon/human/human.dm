@@ -231,7 +231,7 @@
 //Also used in AI tracking people by face, so added in checks for head coverings like masks and helmets
 /mob/living/carbon/human/proc/get_face_name()
 	var/obj/item/organ/external/H = get_organ(BP_HEAD)
-	if(!H || (H.status & ORGAN_DISFIGURED) || H.is_stump() || !real_name || (MUTATION_HUSK in mutations) || (wear_mask && (wear_mask.flags_inv&HIDEFACE)) || (head && (head.flags_inv&HIDEFACE)))	//Face is unrecognizeable, use ID if able
+	if(!H || (H.status & ORGAN_DISFIGURED) || H.is_stump() || !real_name || is_husked() || (wear_mask && (wear_mask.flags_inv&HIDEFACE)) || (head && (head.flags_inv&HIDEFACE)))	//Face is unrecognizeable, use ID if able
 		if(istype(wear_mask) && wear_mask.visible_name)
 			return wear_mask.visible_name
 		else if(istype(wearing_rig) && wearing_rig.visible_name)
@@ -441,20 +441,6 @@
 
 /mob/living/carbon/human/get_bodytype()
 	return bodytype
-
-/mob/living/carbon/human/proc/play_xylophone()
-	if(!xylophone)
-		var/decl/pronouns/G = get_pronouns()
-		visible_message( \
-			SPAN_NOTICE("\The [src] begins playing [G.his] ribcage like a xylophone. It's quite spooky."), \
-			SPAN_NOTICE("You begin to play a spooky refrain on your ribcage."), \
-			SPAN_NOTICE("You hear a spooky xylophone melody."))
-		playsound(loc, pick('sound/effects/xylophone1.ogg','sound/effects/xylophone2.ogg','sound/effects/xylophone3.ogg'), 50, 1, -1)
-		xylophone = TRUE
-		addtimer(CALLBACK(src, .proc/reset_xylophone_callback), 2 MINUTES)
-
-/mob/living/carbon/human/proc/reset_xylophone_callback()
-	xylophone = FALSE
 
 /mob/living/carbon/human/check_has_mouth()
 	// Todo, check stomach organ when implemented.
@@ -1037,9 +1023,6 @@
 			else
 				src.show_message("My [org.name] is <span class='notice'>OK.</span>",1)
 
-		if((MUTATION_SKELETON in mutations) && (!w_uniform) && (!wear_suit))
-			play_xylophone()
-
 /mob/living/carbon/human/proc/resuscitate()
 	if(!is_asystole() || !should_have_organ(BP_HEART))
 		return
@@ -1117,7 +1100,7 @@
 	var/turf/T = get_turf(src)
 	if(istype(T) && T.is_flooded(lying) && should_have_organ(BP_LUNGS))
 		if(T == location) //Can we surface?
-			if(!lying && T.above && !T.above.is_flooded() && T.above.CanZPass(src, UP) && can_overcome_gravity())
+			if(!lying && T.above && !T.above.is_flooded() && T.above.is_open() && can_overcome_gravity())
 				return ..(volume_needed, T.above)
 		var/can_breathe_water = (istype(wear_mask) && wear_mask.filters_water()) ? TRUE : FALSE
 		if(!can_breathe_water)
@@ -1351,3 +1334,11 @@
 //Runs last after setup and after the parent init has been executed.
 /mob/living/carbon/human/proc/post_setup(var/species_name = null, var/datum/dna/new_dna = null)
 	refresh_visible_overlays() //Do this exactly once per setup
+
+/mob/living/carbon/human/handle_flashed(var/obj/item/flash/flash, var/flash_strength)
+	var/safety = eyecheck()
+	if(safety < FLASH_PROTECTION_MODERATE)
+		flash_strength = round(getFlashMod() * flash_strength)
+		if(safety > FLASH_PROTECTION_NONE)
+			flash_strength = (flash_strength / 2)
+	. = ..()

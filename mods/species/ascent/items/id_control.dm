@@ -41,11 +41,10 @@
 	. = ..()
 	if(detached || !owner)
 		return
-
 	var/datum/extension/access_provider/owner_access = get_or_create_extension(owner, /datum/extension/access_provider)
 	owner_access?.register_id(src)
-	owner.set_id_info(id_card)
-	owner.add_language(/decl/language/mantid/worldnet)
+	owner?.set_id_info(id_card)
+	owner?.add_language(/decl/language/mantid/worldnet)
 
 /obj/item/organ/internal/controller/do_uninstall(in_place, detach, ignore_children)
 	var/mob/living/carbon/H = owner
@@ -60,10 +59,11 @@
 		id_card = new id_card(src)
 	. = ..()
 
-/obj/item/organ/internal/controller/GetIdCard()
+/obj/item/organ/internal/controller/GetIdCards()
+	. = ..()
 	//Not using is_broken() because it should be able to function when CUT_AWAY is set
 	if(damage < min_broken_damage)
-		return id_card
+		LAZYDISTINCTADD(., id_card)
 
 /obj/item/organ/internal/controller/GetIdCards()
 	if(damage < min_broken_damage)

@@ -18,11 +18,12 @@
 		. = id.GetAccess()
 
 /atom/movable/proc/GetIdCard()
-	return LAZYACCESS(GetIdCards(), 1)
+	var/list/cards = GetIdCards()
+	return LAZYACCESS(cards, LAZYLEN(cards))
 
 /atom/movable/proc/GetIdCards()
-	var/datum/extension/access_provider/our_provider
-	if((our_provider = get_extension(src, /datum/extension/access_provider)))
+	var/datum/extension/access_provider/our_provider = get_extension(src, /datum/extension/access_provider)
+	if(our_provider)
 		LAZYDISTINCTADD(., our_provider.GetIdCards())
 
 /atom/movable/proc/check_access(atom/movable/A)
@@ -212,16 +213,19 @@ var/global/list/priv_region_access
 /mob/observer/ghost
 	var/static/obj/item/card/id/all_access/ghost_all_access
 
-/mob/observer/ghost/GetIdCard()
-	if(!is_admin(src))
-		return
+/mob/observer/ghost/GetIdCards()
+	. = ..()
+	if (!is_admin(src))
+		return .
 
-	if(!ghost_all_access)
+	if (!ghost_all_access)
 		ghost_all_access = new()
-	return ghost_all_access
+	LAZYDISTINCTADD(., ghost_all_access)
 
-/mob/living/bot/GetIdCard()
-	return botcard
+/mob/living/bot/GetIdCards()
+	. = ..()
+	if(istype(botcard))
+		LAZYDISTINCTADD(., botcard)
 
 // Gets the ID card of a mob, but will not check types in the exceptions list
 /mob/living/carbon/human/GetIdCard(exceptions = null)
@@ -230,21 +234,24 @@ var/global/list/priv_region_access
 /mob/living/carbon/human/GetIdCards(exceptions = null)
 	. = ..()
 	var/list/candidates = get_held_items()
-	LAZYDISTINCTADD(candidates, wear_id)
+	if(wear_id)
+		LAZYDISTINCTADD(candidates, wear_id)
 	for(var/atom/movable/candidate in candidates)
 		if(!candidate || is_type_in_list(candidate, exceptions))
 			continue
-		var/obj/item/card/id/id_card = candidate?.GetIdCard()
-		if(istype(id_card))
-			LAZYDISTINCTADD(., id_card)
+		var/list/obj/item/card/id/id_cards = candidate.GetIdCards()
+		if(LAZYLEN(id_cards))
+			LAZYDISTINCTADD(., id_cards)
 
 /mob/living/carbon/human/GetAccess(var/union = TRUE)
 	. = ..(union)
 
-/mob/living/silicon/GetIdCard()
+/mob/living/silicon/GetIdCards()
+	. = ..()
 	if(stat || (ckey && !client))
 		return // Unconscious, dead or once possessed but now client-less silicons are not considered to have id access.
-	return idcard
+	if(istype(idcard))
+		LAZYDISTINCTADD(., idcard)
 
 /proc/FindNameFromID(var/mob/M, var/missing_id_name = "Unknown")
 	var/obj/item/card/id/C = M.GetIdCard()

@@ -1,7 +1,7 @@
 /turf/simulated
 	name = "station"
 	initial_gas = list(
-		/decl/material/gas/oxygen = MOLES_O2STANDARD, 
+		/decl/material/gas/oxygen = MOLES_O2STANDARD,
 		/decl/material/gas/nitrogen = MOLES_N2STANDARD
 	)
 	open_turf_type = /turf/simulated/open
@@ -168,7 +168,7 @@
 		new /obj/effect/decal/cleanable/blood/oil(src)
 
 /turf/simulated/attackby(var/obj/item/thing, var/mob/user)
-	if(isCoil(thing) && try_build_cable(thing, user))
+	if(IS_COIL(thing) && try_build_cable(thing, user))
 		return TRUE
 	return ..()
 
@@ -177,10 +177,6 @@
 	holy = istype(A) && (A.area_flags & AREA_FLAG_HOLY)
 	levelupdate()
 	. = ..()
-
-/turf/simulated/initialize_ambient_light(var/mapload)
-	for(var/turf/T AS_ANYTHING in RANGE_TURFS(src, 1))
-		T.update_ambient_light(mapload)
 
 /turf/simulated/Destroy()
 	if (zone)

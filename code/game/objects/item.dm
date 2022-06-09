@@ -131,6 +131,7 @@
 
 	STOP_PROCESSING(SSobj, src)
 	QDEL_NULL(hidden_uplink)
+	QDEL_NULL(coating)
 
 	if(ismob(loc))
 		var/mob/M = loc
@@ -140,10 +141,11 @@
 			LAZYREMOVE(organ.implants, src)
 		M.drop_from_inventory(src)
 
+	// TODO: CONVERT TO USE OBSERVATIONS
 	var/obj/item/storage/storage = loc
 	if(istype(storage))
 		// some ui cleanup needs to be done
-		storage.on_item_pre_deletion(src) // must be done before deletion
+		storage.on_item_pre_deletion(src) // must be done before deletion // TODO: ADD PRE_DELETION OBSERVATION
 		. = ..()
 		storage.on_item_post_deletion(src) // must be done after deletion
 	else
@@ -431,6 +433,10 @@
 
 	if(user && (z_flags & ZMM_MANGLE_PLANES))
 		addtimer(CALLBACK(user, /mob/proc/check_emissive_equipment), 0, TIMER_UNIQUE)
+
+// As above but for items being equipped to an active module on a robot.
+/obj/item/proc/equipped_robot(var/mob/user)
+	return
 
 //Defines which slots correspond to which slot flags
 var/global/list/slot_flags_enumeration = list(
@@ -977,3 +983,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/gives_weather_protection()
 	return FALSE
+
+/obj/item/get_alt_interactions(var/mob/user)
+	. = ..()
+	if(config.expanded_alt_interactions)
+		. += list(
+			/decl/interaction_handler/pick_up,
+			/decl/interaction_handler/drop,
+			/decl/interaction_handler/use
+		)

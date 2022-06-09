@@ -128,7 +128,7 @@
 	. = ..()
 
 /obj/machinery/alarm/Destroy()
-	events_repository.unregister(/decl/observ/name_set, src, get_area(src), .proc/change_area_name)
+	events_repository.unregister(/decl/observ/name_set, get_area(src), src, .proc/change_area_name)
 	unregister_radio(src, frequency)
 	return ..()
 
@@ -828,7 +828,7 @@ FIRE ALARM
 
 /obj/machinery/firealarm/examine(mob/user)
 	. = ..()
-	if(loc.z in global.using_map.contact_levels)
+	if(isContactLevel(loc.z))
 		var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
 		to_chat(user, "The current alert level is [security_state.current_security_level.name].")
 
@@ -881,7 +881,7 @@ FIRE ALARM
 		if(!detecting)
 			overlays += get_cached_overlay("fire1")
 			set_light(2, 0.25, COLOR_RED)
-		else if(z in global.using_map.contact_levels)
+		else if(isContactLevel(z))
 			var/decl/security_state/security_state = GET_DECL(global.using_map.security_state)
 			var/decl/security_level/sl = security_state.current_security_level
 

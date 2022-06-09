@@ -287,7 +287,7 @@
 				stage++
 				return TRUE
 		if(2)
-			if(W.sharp || istype(W,/obj/item/hemostat) || isWirecutter(W))
+			if(W.sharp || istype(W,/obj/item/hemostat) || IS_WIRECUTTER(W))
 				var/list/radial_buttons = make_item_radial_menu_choices(get_contents_recursive())
 				if(LAZYLEN(radial_buttons))
 					var/obj/item/removing = show_radial_menu(user, src, radial_buttons, radius = 42, require_near = TRUE, use_labels = TRUE, check_locs = list(src))
@@ -1452,11 +1452,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		is_detached = FALSE //External prosthetics are never detached
 	return ..(is_detached)
 
-/obj/item/organ/external/proc/disfigure(var/type = "brute")
+/obj/item/organ/external/proc/disfigure(var/type = BRUTE)
 	if(status & ORGAN_DISFIGURED)
 		return
 	if(owner)
-		if(type == "brute")
+		if(type == BRUTE)
 			owner.visible_message("<span class='danger'>You hear a sickening cracking sound coming from \the [owner]'s [name].</span>",	\
 			"<span class='danger'>Your [name] becomes a mangled mess!</span>",	\
 			"<span class='danger'>You hear a sickening crack.</span>")
@@ -1586,7 +1586,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!BP_IS_PROSTHETIC(src) && !BP_IS_CRYSTAL(src))
 		var/decay_rate = damage/(max_damage*2)
 		germ_level += round(rand(decay_rate,decay_rate*1.5)) //So instead, we're going to say the damage is so severe its functions are slowly failing due to the extensive damage
-	else
+	else //TODO: more advanced system for synths
+		if(istype(src,/obj/item/organ/external/chest) || istype(src,/obj/item/organ/external/groin))
+			return
 		status |= ORGAN_DEAD
 	if(status & ORGAN_DEAD) //The organic dying part is covered in germ handling
 		STOP_PROCESSING(SSobj, src)
