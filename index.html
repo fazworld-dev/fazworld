@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(128 modules,
-    44/3938 macros, 1.1%)</aside></h3>
+<aside>(131 modules,
+    44/3937 macros, 1.1%)</aside></h3>
 <ul class="index-tree modules">
     <li><a href="(builtins).html" title="(builtins)">(builtins)</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -62,7 +62,10 @@ General Public License version 3.
     <li><a href="code/controllers/hooks.html" title="code&#x2F;controllers&#x2F;hooks">hooks</a></li>
     <li><a href="code/controllers/hooks-defs.html" title="code&#x2F;controllers&#x2F;hooks-defs">hooks-defs</a></li>
     <li><a href="code/controllers/master.html" title="code&#x2F;controllers&#x2F;master">master</a></li>
-    <li><span class="no-substance">subsystems&#x2F;</span><a href="code/controllers/subsystems/timer.html" title="code&#x2F;controllers&#x2F;subsystems&#x2F;timer">timer</a></li>
+    <li class="has-children"><span title="code&#x2F;controllers&#x2F;subsystems">subsystems</span><ul class="index-tree">
+    <li><a href="code/controllers/subsystems/garbage.html" title="code&#x2F;controllers&#x2F;subsystems&#x2F;garbage">garbage</a> - Number of times it was destroyed before Initialize().</li>
+    <li><a href="code/controllers/subsystems/timer.html" title="code&#x2F;controllers&#x2F;subsystems&#x2F;timer">timer</a></li>
+    </ul></li>
     </ul></li>
     <li class="has-children"><span title="code&#x2F;datums">datums</span><ul class="index-tree">
     <li><a href="code/datums/ai_law_sets.html" title="code&#x2F;datums&#x2F;ai_law_sets">ai_law_sets</a></li>
@@ -231,13 +234,19 @@ Thanks to forum_account for saving the day, the library can be found
     <li><a href="maps/away.html" title="maps&#x2F;away">Away sites</a></li>
     <li><span class="no-substance">random_ruins&#x2F;exoplanet_ruins&#x2F;oldpod&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;mods&#x2F;content&#x2F;corporate&#x2F;datum&#x2F;</span><a href="maps/random_ruins/exoplanet_ruins/oldpod/../../../../mods/content/corporate/datum/ai_laws.html" title="maps&#x2F;random_ruins&#x2F;exoplanet_ruins&#x2F;oldpod&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;mods&#x2F;content&#x2F;corporate&#x2F;datum&#x2F;ai_laws">ai_laws</a></li>
     </ul></li>
-    <li><span class="no-substance">mods&#x2F;</span><a href="mods/_modpack.html" title="mods&#x2F;_modpack">_modpack</a> - A list of strings that are used by the end of round credits roll.</li>
+    <li class="has-children"><span title="mods">mods</span><ul class="index-tree">
+    <li><a href="mods/_modpack.html" title="mods&#x2F;_modpack">_modpack</a> - A list of strings that are used by the end of round credits roll.</li>
+    <li class="has-children"><span class="no-substance">species&#x2F;bayliens&#x2F;skrell&#x2F;</span><span title="mods&#x2F;species&#x2F;bayliens&#x2F;skrell&#x2F;names">names</span><ul class="index-tree">
+    <li><a href="mods/species/bayliens/skrell/names/first_name_skrell.html" title="mods&#x2F;species&#x2F;bayliens&#x2F;skrell&#x2F;names&#x2F;first_name_skrell">first_name_skrell</a></li>
+    <li><a href="mods/species/bayliens/skrell/names/last_name_skrell.html" title="mods&#x2F;species&#x2F;bayliens&#x2F;skrell&#x2F;names&#x2F;last_name_skrell">last_name_skrell</a></li>
+    </ul></li>
+    </ul></li>
     </ul>
 
 
 
 <h3 id="types">Types
-<aside>(81 detailed/256 documented/16282 total, 1.6%)</aside></h3>
+<aside>(83 detailed/259 documented/16328 total, 1.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
     <li class="has-children"><a href="atom.html" title="&#x2F;atom">atom</a><ul class="index-tree">
@@ -287,7 +296,9 @@ Thanks to forum_account for saving the day, the library can be found
     <li><a href="datum/controller/master.html" title="&#x2F;datum&#x2F;controller&#x2F;master">master</a></li>
     <li class="has-children"><a href="datum/controller/subsystem.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem">subsystem</a><ul class="index-tree">
     <li><a href="datum/controller/subsystem/jobs.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;jobs">jobs</a></li>
+    <li><a href="datum/controller/subsystem/networking.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;networking">networking</a></li>
     <li><span class="no-substance">processing&#x2F;</span><a href="datum/controller/subsystem/processing/nano.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;processing&#x2F;nano">nano</a></li>
+    <li><a href="datum/controller/subsystem/secrets.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;secrets">secrets</a></li>
     <li><a href="datum/controller/subsystem/shuttle.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;shuttle">shuttle</a></li>
     <li><a href="datum/controller/subsystem/timer.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;timer">timer</a></li>
     <li><a href="datum/controller/subsystem/zcopy.html" title="&#x2F;datum&#x2F;controller&#x2F;subsystem&#x2F;zcopy">zcopy</a></li>
@@ -330,6 +341,14 @@ Variable model is one full map line (e.g /turf/unsimulated/wall{icon_state = &qu
     <li><span class="no-substance">node&#x2F;</span><span class="no-substance" title="&#x2F;datum&#x2F;node&#x2F;test">test</span> - Helpers</li>
     <li><a href="datum/powernet.html" title="&#x2F;datum&#x2F;powernet">powernet</a></li>
     <li><a href="datum/preferences.html" title="&#x2F;datum&#x2F;preferences">preferences</a></li>
+    <li><span class="no-substance" title="&#x2F;datum&#x2F;qdel_item">qdel_item</span> - Total number of times its passed thru qdel.
+Total amount of milliseconds spent processing this type's Destroy().
+Times it was queued for soft deletion but failed to soft delete.
+Different from failures because it also includes QDEL_HINT_HARDDEL deletions.
+Total amount of milliseconds spent hard deleting this type.
+Number of times its not respected force=TRUE.
+Number of times it hasn't bothered to give a qdel hint.
+Number of times slept in its destroy.</li>
     <li class="has-children"><a href="datum/shuttle.html" title="&#x2F;datum&#x2F;shuttle">shuttle</a><ul class="index-tree">
     <li><span class="no-substance">autodock&#x2F;ferry&#x2F;</span><a href="datum/shuttle/autodock/ferry/specops.html" title="&#x2F;datum&#x2F;shuttle&#x2F;autodock&#x2F;ferry&#x2F;specops">specops</a></li>
     </ul></li>
@@ -632,7 +651,7 @@ TO-DO -- Using it as a power measurement tool for cables etc. Nannek.</li>
 </main>
 <footer>
     fazworld.dme
-    <a href="https://github.com/fazworld-dev/fazworld/tree/77ff4202bd46f4e4287ac9edfcaa04aabb3ebe86">77ff420</a>
+    <a href="https://github.com/fazworld-dev/fazworld/tree/418f49665f8bc577a8a3df639776aaad0084dd60">418f496</a>
         (dev) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
