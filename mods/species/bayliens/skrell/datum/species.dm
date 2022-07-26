@@ -27,6 +27,8 @@
 	)
 	hidden_from_codex = FALSE
 
+	preview_outfit = /decl/hierarchy/outfit/job/generic/scientist
+
 	burn_mod = 0.9
 	oxy_mod = 1.3
 	flash_mod = 1.2
@@ -144,7 +146,8 @@
 	return istype(H) && (H.appearance_descriptors["headtail length"] == 1 ? MALE : FEMALE)
 
 /decl/species/skrell/handle_trail(mob/living/carbon/human/H, turf/simulated/T)
-	if(!H.shoes)
+	var/obj/item/shoes = H.get_equipped_item(slot_shoes_str)
+	if(!shoes)
 		var/list/bloodDNA
 		var/list/blood_data = REAGENT_DATA(H.vessel, /decl/material/liquid/blood)
 		if(blood_data)

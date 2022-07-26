@@ -36,15 +36,12 @@
 // FAZ-WORLD EDIT START
 /// Manufacturer name, used in the description. Defaults to name if unset.
 /decl/prosthetics_manufacturer/var/manufacturer_name
-/decl/prosthetics_manufacturer/var/disfigured_icon
 /decl/prosthetics_manufacturer/proc/on_fracture(var/obj/item/organ/external/org)
 	return
 
 /decl/prosthetics_manufacturer/proc/on_mend(var/obj/item/organ/external/org)
 	return
-
-/decl/prosthetics_manufacturer/proc/get_limb_icon(var/obj/item/organ/external/org)
-	if(org.status & ORGAN_DISFIGURED)
-		return disfigured_icon || icon
-	return icon
 // FAZ-WORLD EDIT END
+
+/decl/prosthetics_manufacturer/proc/get_base_icon(var/mob/living/carbon/human/owner)
+	return icon

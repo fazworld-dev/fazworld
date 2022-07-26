@@ -174,7 +174,7 @@
 	//is probabilistic so we can't do that and it would be unfair to just check one.
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		var/obj/item/organ/external/hand = H.get_organ(M.get_empty_hand_slot())
+		var/obj/item/organ/external/hand = GET_EXTERNAL_ORGAN(H, M.get_empty_hand_slot())
 		if(istype(hand) && hand.is_usable())
 			return TRUE
 	return FALSE
@@ -414,6 +414,8 @@
 /obj/item/proc/equipped(var/mob/user, var/slot)
 	SHOULD_CALL_PARENT(TRUE)
 
+	add_fingerprint(user)
+
 	hud_layerise()
 	addtimer(CALLBACK(src, .proc/reconsider_client_screen_presence, user.client, slot), 0)
 
@@ -460,7 +462,7 @@ var/global/list/slot_flags_enumeration = list(
 //Set disable_warning to 1 if you wish it to not give you outputs.
 //Should probably move the bulk of this into mob code some time, as most of it is related to the definition of slots and not item-specific
 //set force to ignore blocking overwear and occupied slots
-/obj/item/proc/mob_can_equip(M, slot, disable_warning = 0, force = 0)
+/obj/item/proc/mob_can_equip(M, slot, disable_warning = FALSE, force = FALSE)
 
 	if(!slot || !M || !ishuman(M))
 		return FALSE
@@ -499,12 +501,12 @@ var/global/list/slot_flags_enumeration = list(
 		if(slot_belt_str)
 			if(slot == slot_belt_str && (item_flags & ITEM_FLAG_IS_BELT))
 				return TRUE
-			else if(!H.w_uniform && (slot_w_uniform_str in H.species.hud?.equip_slots))
+			else if(!H.get_equipped_item(slot_w_uniform_str) && (slot_w_uniform_str in H.species.hud?.equip_slots))
 				if(!disable_warning)
 					to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
 		if(slot_l_store_str, slot_r_store_str)
-			if(!H.w_uniform && (slot_w_uniform_str in H.species.hud?.equip_slots))
+			if(!H.get_equipped_item(slot_w_uniform_str) && (slot_w_uniform_str in H.species.hud?.equip_slots))
 				if(!disable_warning)
 					to_chat(H, SPAN_WARNING("You need a jumpsuit before you can attach this [name]."))
 				return FALSE
@@ -513,45 +515,41 @@ var/global/list/slot_flags_enumeration = list(
 			if(get_storage_cost() >= ITEM_SIZE_NO_CONTAINER)
 				return FALSE
 		if(slot_s_store_str)
-			if(!H.wear_suit && (slot_wear_suit_str in H.species.hud?.equip_slots))
+			var/obj/item/suit = H.get_equipped_item(slot_wear_suit_str)
+			if(!suit && (slot_wear_suit_str in H.species.hud?.equip_slots))
 				if(!disable_warning)
 					to_chat(H, SPAN_WARNING("You need a suit before you can attach this [name]."))
 				return FALSE
-			if(H.wear_suit && !H.wear_suit.allowed)
+			if(suit && !suit.allowed)
 				if(!disable_warning)
 					to_chat(usr, SPAN_WARNING("You somehow have a suit with no defined allowed items for suit storage, stop that."))
 				return FALSE
-			if( !(istype(src, /obj/item/modular_computer/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, H.wear_suit.allowed)) )
+			if( !(istype(src, /obj/item/modular_computer/pda) || istype(src, /obj/item/pen) || is_type_in_list(src, suit.allowed)) )
 				return FALSE
 		if(slot_handcuffed_str)
 			if(!istype(src, /obj/item/handcuffs))
 				return FALSE
 		if(slot_in_backpack_str) //used entirely for equipping spawned mobs or at round start
-			var/allow = FALSE
-			if(H.back && istype(H.back, /obj/item/storage/backpack))
-				var/obj/item/storage/backpack/B = H.back
-				if(B.can_be_inserted(src,M,1))
-					allow = TRUE
-			if(!allow)
+			var/obj/item/storage/backpack/B = H.get_equipped_item(slot_back_str)
+			if(!istype(B) || !B.can_be_inserted(src,M,1))
 				return FALSE
 		if(slot_tie_str)
-			if((!H.w_uniform && (slot_w_uniform_str in H.species.hud?.equip_slots)) && (!H.wear_suit && (slot_wear_suit_str in H.species.hud?.equip_slots)))
+			var/obj/item/clothing/under/uniform = H.get_equipped_item(slot_w_uniform_str)
+			var/obj/item/clothing/suit = H.get_equipped_item(slot_wear_suit_str)
+			if((!uniform && (slot_w_uniform_str in H.species.hud?.equip_slots)) && (!suit && (slot_wear_suit_str in H.species.hud?.equip_slots)))
 				if(!disable_warning)
 					to_chat(H, SPAN_WARNING("You need something you can attach \the [src] to."))
 				return FALSE
-			if(H.w_uniform && (slot_w_uniform_str in H.species.hud?.equip_slots))
-				var/obj/item/clothing/under/uniform = H.w_uniform
-				if(uniform && !uniform.can_attach_accessory(src))
+			if(istype(uniform) && (slot_w_uniform_str in H.species.hud?.equip_slots))
+				if(!uniform.can_attach_accessory(src))
 					if (!disable_warning)
 						to_chat(H, SPAN_WARNING("You cannot equip \the [src] to \the [uniform]."))
 					return FALSE
 				return TRUE
-			if(H.wear_suit && (slot_wear_suit_str in H.species.hud?.equip_slots))
-				var/obj/item/clothing/suit/suit = H.wear_suit
-				if(suit && !suit.can_attach_accessory(src))
-					if (!disable_warning)
-						to_chat(H, SPAN_WARNING("You cannot equip \the [src] to \the [suit]."))
-					return FALSE
+			if(suit && (slot_wear_suit_str in H.species.hud?.equip_slots) && !suit.can_attach_accessory(src))
+				if (!disable_warning)
+					to_chat(H, SPAN_WARNING("You cannot equip \the [src] to \the [suit]."))
+				return FALSE
 	return TRUE
 
 /obj/item/proc/mob_can_unequip(mob/M, slot, disable_warning = 0)
@@ -641,8 +639,9 @@ var/global/list/slot_flags_enumeration = list(
 
 	var/mob/living/carbon/human/H = M
 	if(istype(H))
-		for(var/obj/item/protection in list(H.head, H.wear_mask, H.glasses))
-			if(protection && (protection.body_parts_covered & SLOT_EYES))
+		for(var/slot in global.standard_headgear_slots)
+			var/obj/item/protection = H.get_equipped_item(slot)
+			if(istype(protection) && (protection.body_parts_covered & SLOT_EYES))
 				// you can't stab someone in the eyes wearing a mask!
 				to_chat(user, SPAN_WARNING("You're going to need to remove the eye covering first."))
 				return
@@ -660,7 +659,6 @@ var/global/list/slot_flags_enumeration = list(
 
 	if(istype(H))
 
-		var/obj/item/organ/internal/eyes/eyes = H.get_organ(BP_EYES)
 
 		if(H != user)
 
@@ -672,6 +670,7 @@ var/global/list/slot_flags_enumeration = list(
 				SPAN_DANGER("\The [user] has stabbed themself with \the [src]!"),
 				self_message = SPAN_DANGER("You stab yourself in the eyes with \the [src]!"))
 
+		var/obj/item/organ/internal/eyes = GET_INTERNAL_ORGAN(H, BP_EYES)
 		eyes.damage += rand(3,4)
 		if(eyes.damage >= eyes.min_bruised_damage)
 			if(M.stat != 2)
@@ -688,7 +687,7 @@ var/global/list/slot_flags_enumeration = list(
 				if(M.stat != 2)
 					to_chat(M, SPAN_WARNING("You go blind!"))
 
-		var/obj/item/organ/external/affecting = H.get_organ(eyes.parent_organ)
+		var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(H, eyes.parent_organ)
 		affecting.take_external_damage(7)
 	else
 		M.take_organ_damage(7)
@@ -706,19 +705,29 @@ var/global/list/slot_flags_enumeration = list(
 		blood_overlay.color = COLOR_LUMINOL
 		update_icon()
 
-/obj/item/add_blood(mob/living/carbon/human/M, amount = 2, blood_data)
+/obj/item/add_blood(mob/living/carbon/human/M, amount = 2, list/blood_data)
 	if (!..())
-		return 0
+		return FALSE
 
 	if(istype(src, /obj/item/energy_blade))
 		return
 
-	if(!blood_data && istype(M))
+	if(!istype(M))
+		return TRUE
+
+	if(!blood_data)
 		blood_data = REAGENT_DATA(M.vessel, /decl/material/liquid/blood)
-	var/datum/extension/forensic_evidence/forensics = get_or_create_extension(src, /datum/extension/forensic_evidence)
-	forensics.add_data(/datum/forensics/blood_dna, LAZYACCESS(blood_data, "blood_DNA"))
+
+	var/sample_dna = LAZYACCESS(blood_data, "blood_DNA")
+	if(sample_dna)
+		var/datum/extension/forensic_evidence/forensics = get_or_create_extension(src, /datum/extension/forensic_evidence)
+		forensics.add_data(/datum/forensics/blood_dna, sample_dna)
 	add_coating(/decl/material/liquid/blood, amount, blood_data)
-	return 1 //we applied blood to the item
+
+	if(!LAZYACCESS(blood_DNA, M.dna.unique_enzymes))
+		LAZYSET(blood_DNA, M.dna.unique_enzymes, M.dna.b_type)
+
+	return TRUE
 
 var/global/list/blood_overlay_cache = list()
 
@@ -978,17 +987,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		screen_loc = null
 	else if(client)
 		client.screen |= src
-		if(!client.mob || !client.mob.hud_used || !slot || (!client.mob.hud_used.inventory_shown && (slot in client.mob.hud_used.hidden_inventory_slots)))
+		if(!client.mob || !client.mob.hud_used || !slot || (!client.mob.hud_used.inventory_shown && (slot in global.hidden_inventory_slots)))
 			screen_loc = null
 
 /obj/item/proc/gives_weather_protection()
 	return FALSE
-
-/obj/item/get_alt_interactions(var/mob/user)
-	. = ..()
-	if(config.expanded_alt_interactions)
-		. += list(
-			/decl/interaction_handler/pick_up,
-			/decl/interaction_handler/drop,
-			/decl/interaction_handler/use
-		)

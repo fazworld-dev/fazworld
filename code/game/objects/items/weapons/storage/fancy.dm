@@ -98,7 +98,7 @@
 	overlays = list() //resets list
 	overlays += image(icon,"crayonbox")
 	for(var/obj/item/pen/crayon/crayon in contents)
-		overlays += image(icon,crayon.colourName)
+		overlays += image(icon,crayon.stroke_colour_name)
 
 ////////////
 //CIG PACK//
@@ -134,7 +134,7 @@
 	if(!istype(M, /mob))
 		return
 
-	if(M == user && user.zone_sel.selecting == BP_MOUTH && contents.len > 0 && !user.wear_mask)
+	if(M == user && user.zone_sel.selecting == BP_MOUTH && contents.len > 0 && !user.get_equipped_item(slot_wear_mask_str))
 		// Find ourselves a cig. Note that we could be full of lighters.
 		var/obj/item/clothing/mask/smokable/cigarette/cig = null
 		for(var/obj/item/clothing/mask/smokable/cigarette/C in contents)

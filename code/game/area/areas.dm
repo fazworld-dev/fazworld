@@ -11,6 +11,8 @@ var/global/list/areas = list()
 	luminosity =    0
 	mouse_opacity = 0
 
+	var/proper_name /// Automatically set by SetName and Initialize; cached result of strip_improper(name).
+
 	var/fire
 	var/party
 	var/eject
@@ -63,6 +65,7 @@ var/global/list/areas = list()
 /area/New()
 	icon_state = ""
 	uid = ++global_uid
+	proper_name = strip_improper(name)
 	luminosity = !dynamic_lighting
 	..()
 
@@ -79,12 +82,20 @@ var/global/list/areas = list()
 	icon_state = "white"
 	blend_mode = BLEND_MULTIPLY
 
-/area/Del()
-	global.areas -= src
-	. = ..()
-	
+// qdel(area) should not be attempted on an area with turfs in contents. ChangeArea every turf in it first.
+
 /area/Destroy()
 	global.areas -= src
+	var/failure = FALSE
+	for(var/atom/A in contents)
+		if(isturf(A))
+			failure = TRUE
+			contents.Remove(A) // note: A.loc == null after this
+		else
+			qdel(A)
+	if(failure)
+		PRINT_STACK_TRACE("Area [log_info_line(src)] was qdeleted with turfs in contents.")
+	area_repository.clear_cache()
 	..()
 	return QDEL_HINT_HARDDEL
 
@@ -93,6 +104,7 @@ var/global/list/areas = list()
 /proc/ChangeArea(var/turf/T, var/area/A)
 	if(!istype(A))
 		CRASH("Area change attempt failed: invalid area supplied.")
+	var/old_outside = T.is_outside()
 	var/area/old_area = get_area(T)
 	if(old_area == A)
 		return
@@ -107,6 +119,9 @@ var/global/list/areas = list()
 
 	for(var/obj/machinery/M in T)
 		M.area_changed(old_area, A) // They usually get moved events, but this is the one way an area can change without triggering one.
+
+	if(T.is_outside == OUTSIDE_AREA && T.is_outside() != old_outside)
+		T.update_weather()
 
 /area/proc/alert_on_fall(var/mob/living/carbon/human/H)
 	return
@@ -314,9 +329,9 @@ var/global/list/mob/living/forced_ambiance_list = new
 	if(L.ckey)
 		play_ambience(L)
 		do_area_blurb(L)
-		
+
 	L.lastarea = newarea
-	
+
 
 /area/Exited(A)
 	if(isliving(A))
@@ -328,8 +343,8 @@ var/global/list/mob/living/forced_ambiance_list = new
 		return
 
 	if(L?.get_preference_value(/datum/client_preference/area_info_blurb) != PREF_YES)
-		return 
-	
+		return
+
 	if(!(L.ckey in blurbed_stated_to))
 		blurbed_stated_to += L.ckey
 		to_chat(L, SPAN_NOTICE(FONT_SMALL("[description]")))
@@ -443,3 +458,7 @@ var/global/list/mob/living/forced_ambiance_list = new
 
 /area/proc/has_turfs()
 	return !!(locate(/turf) in src)
+
+/area/SetName(new_name)
+	. = ..()
+	proper_name = strip_improper(new_name)

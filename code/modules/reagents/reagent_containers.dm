@@ -12,9 +12,6 @@
 	var/label_text
 	var/show_reagent_name = FALSE
 
-/obj/item/chems/get_alt_interactions(var/mob/user)
-	. = ..() | /decl/interaction_handler/set_transfer/chems
-
 /obj/item/chems/proc/cannot_interact(mob/user)
 	if(!CanPhysicallyInteract(user))
 		to_chat(usr, SPAN_WARNING("You're in no condition to do that!"))
@@ -62,7 +59,7 @@
 	return
 
 /obj/item/chems/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/pen) || istype(W, /obj/item/flashlight/pen))
+	if(IS_PEN(W))
 		var/tmp_label = sanitize_safe(input(user, "Enter a label for [name]", "Label", label_text), MAX_NAME_LEN)
 		if(length(tmp_label) > 10)
 			to_chat(user, "<span class='notice'>The label can be at most 10 characters long.</span>")
@@ -226,3 +223,20 @@
 /obj/item/chems/shatter(consumed)
 	reagents.splash(get_turf(src), reagents.total_volume)
 	. = ..()
+
+/obj/item/chems/get_alt_interactions(var/mob/user)
+	. = ..()
+	LAZYADD(., /decl/interaction_handler/set_transfer/chems)
+
+/decl/interaction_handler/set_transfer/chems
+	expected_target_type = /obj/item/chems
+
+/decl/interaction_handler/set_transfer/chems/is_possible(var/atom/target, var/mob/user)
+	. = ..()
+	if(.)
+		var/obj/item/chems/C = target
+		return !!C.possible_transfer_amounts
+
+/decl/interaction_handler/set_transfer/chems/invoked(var/atom/target, var/mob/user)
+	var/obj/item/chems/C = target
+	C.set_amount_per_transfer_from_this()

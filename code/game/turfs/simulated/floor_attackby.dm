@@ -1,7 +1,7 @@
 /turf/simulated/floor/attack_hand(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/hand = H.get_organ(H.get_active_held_item_slot())
+		var/obj/item/hand = GET_EXTERNAL_ORGAN(H, H.get_active_held_item_slot())
 		if(hand && try_graffiti(H, hand))
 			return TRUE
 	. = ..()
@@ -10,6 +10,11 @@
 
 	if(!C || !user)
 		return 0
+
+	if(istype(C, /obj/item/stack/tile/roof))
+		var/obj/item/stack/tile/roof/T = C
+		T.try_build_turf(user, src)
+		return TRUE
 
 	if(IS_COIL(C) || (flooring && istype(C, /obj/item/stack/material/rods)))
 		return ..(C, user)
@@ -64,7 +69,11 @@
 			make_plating(1)
 			playsound(src, 'sound/items/Ratchet.ogg', 80, 1)
 			return TRUE
-		else if(istype(C, /obj/item/shovel) && (flooring.flags & TURF_REMOVE_SHOVEL))
+		else if(IS_SHOVEL(C) && (flooring.flags & TURF_REMOVE_SHOVEL))
+			if(!user.do_skilled(flooring.remove_timer, SKILL_CONSTRUCTION, src))
+				return TRUE
+			if(!flooring)
+				return
 			to_chat(user, "<span class='notice'>You shovel off the [flooring.descriptor].</span>")
 			make_plating(1)
 			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)

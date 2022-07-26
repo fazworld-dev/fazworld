@@ -248,8 +248,8 @@ var/global/list/gamemode_cache = list()
 
 	var/lock_client_view_x
 	var/lock_client_view_y
-	var/max_client_view_x
-	var/max_client_view_y
+	var/max_client_view_x = MAX_VIEW
+	var/max_client_view_y = MAX_VIEW
 
 	var/allow_diagonal_movement = FALSE
 

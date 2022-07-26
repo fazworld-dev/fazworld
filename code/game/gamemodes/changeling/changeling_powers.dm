@@ -176,7 +176,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 		to_chat(src, SPAN_WARNING("We are already absorbing!"))
 		return
 
-	var/obj/item/organ/external/affecting = T.get_organ(src.zone_sel.selecting)
+	var/obj/item/organ/external/affecting = GET_EXTERNAL_ORGAN(T, src.zone_sel.selecting)
 	if(!affecting)
 		to_chat(src, SPAN_WARNING("They are missing that body part!"))
 
@@ -708,7 +708,7 @@ var/global/list/datum/absorbed_dna/hivemind_bank = list()
 	if(!(T in view(changeling.sting_range))) return
 	if(!sting_can_reach(T, changeling.sting_range)) return
 	if(!changeling_power(required_chems)) return
-	var/obj/item/organ/external/target_limb = T.get_organ(src.zone_sel.selecting)
+	var/obj/item/organ/external/target_limb = GET_EXTERNAL_ORGAN(T, src.zone_sel.selecting)
 	if (!target_limb)
 		to_chat(src, SPAN_WARNING("\The [T] is missing that limb."))
 		return
@@ -721,7 +721,8 @@ var/global/list/datum/absorbed_dna/hivemind_bank = list()
 	else
 		visible_message(SPAN_DANGER("\The [src] fires an organic shard into [T]!"))
 
-	for(var/obj/item/clothing/clothes in list(T.head, T.wear_mask, T.wear_suit, T.w_uniform, T.gloves, T.shoes))
+	for(var/slot in global.standard_clothing_slots)
+		var/obj/item/clothing/clothes = T.get_equipped_item(slot)
 		if(istype(clothes) && (clothes.body_parts_covered & target_limb.body_part) && (clothes.item_flags & ITEM_FLAG_THICKMATERIAL))
 			to_chat(src, SPAN_WARNING("\The [T]'s armor has protected them."))
 			return //thick clothes will protect from the sting

@@ -86,7 +86,7 @@
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/hand = H.get_organ(H.get_active_held_item_slot())
+		var/obj/item/hand = GET_EXTERNAL_ORGAN(H, H.get_active_held_item_slot())
 		if(hand && try_graffiti(H, hand))
 			return TRUE
 	. = ..()
@@ -94,6 +94,9 @@
 		return try_touch(user, (locate(/obj/effect/overlay/wallrot) in src))
 
 /turf/simulated/wall/attackby(var/obj/item/W, var/mob/user, click_params)
+
+	if(istype(W, /obj/item/stack/tile/roof))
+		return ..()
 
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
 

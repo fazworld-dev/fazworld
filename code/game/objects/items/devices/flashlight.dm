@@ -99,7 +99,8 @@
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
 		if(istype(H))
-			for(var/obj/item/clothing/C in list(H.head,H.wear_mask,H.glasses))
+			for(var/slot in global.standard_headgear_slots)
+				var/obj/item/clothing/C = H.get_equipped_item(slot)
 				if(istype(C) && (C.body_parts_covered & SLOT_EYES))
 					to_chat(user, "<span class='warning'>You're going to need to remove [C] first.</span>")
 					return
@@ -109,7 +110,7 @@
 				to_chat(user, "<span class='warning'>You can't find anything on [H] to direct [src] into!</span>")
 				return
 
-			vision = H.get_organ(H.species.vision_organ)
+			vision = GET_INTERNAL_ORGAN(H, H.species.vision_organ)
 			if(!vision)
 				vision = H.species.has_organ[H.species.vision_organ]
 				var/decl/pronouns/G = H.get_pronouns()
@@ -185,6 +186,10 @@
 	w_class = ITEM_SIZE_TINY
 	flashlight_range = 2
 	light_wedge = LIGHT_OMNI
+
+/obj/item/flashlight/pen/Initialize()
+	set_extension(src, /datum/extension/tool, list(TOOL_PEN = TOOL_QUALITY_DEFAULT), list(TOOL_PEN = list(TOOL_PROP_COLOR = "black", TOOL_PROP_COLOR_NAME = "black")))
+	. = ..()
 
 /obj/item/flashlight/maglight
 	name = "maglight"

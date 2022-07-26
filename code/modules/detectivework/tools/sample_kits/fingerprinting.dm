@@ -42,7 +42,7 @@
 	F.full_print = M.get_full_print()
 	F.completeness = 100
 	var/datum/forensics/fingerprints/FP = new()
-	FP.data = F
+	FP.data = list(F)
 	merge_evidence_list(list(FP))
 	SetName("[initial(name)] (\the [M])")
 	update_icon()
@@ -60,8 +60,8 @@
 		return
 
 	for(var/tag in list(BP_R_HAND,BP_L_HAND)) //#FIXME: Alien prints??
-		var/obj/item/organ/external/O = H.get_organ(tag)
-		if(istype(O) && !O.is_stump())
+		var/obj/item/organ/external/O = GET_EXTERNAL_ORGAN(H, tag)
+		if(O)
 			return TRUE
 	to_chat(user, SPAN_WARNING("They don't have any hands."))
 

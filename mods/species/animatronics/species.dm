@@ -69,7 +69,8 @@
 		/decl/emote/exertion/synthetic/creak
 	)
 
-/decl/species/animatronic/post_organ_rejuvenate(obj/item/organ/org, mob/living/carbon/human/H)
+/decl/species/animatronic/apply_species_organ_modifications(obj/item/organ/org, mob/living/carbon/human/H)
+	..()
 	var/obj/item/organ/external/E = org
 	var/decl/bodytype/animatronic/A = H.bodytype
 	var/our_model = istype(A) ? A.model : /decl/prosthetics_manufacturer/endoskeleton

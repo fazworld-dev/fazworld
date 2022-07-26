@@ -199,7 +199,7 @@
 			if(process_projectile(P, user, user, pew_loc))
 				var/decl/pronouns/G = user.get_pronouns()
 				handle_post_fire(user, user)
-				var/obj/item/affecting = user.get_organ(pew_loc)
+				var/obj/item/affecting = GET_EXTERNAL_ORGAN(user, pew_loc)
 				pew_loc = affecting ? "\the [affecting]" : "the foot"
 				user.visible_message(
 					SPAN_DANGER("\The [user] shoots [G.self] in [pew_loc] with \the [src]!"),
@@ -387,8 +387,8 @@
 
 	if(istype(user,/mob/living/carbon/human) && user.is_cloaked()) //shooting will disable a rig cloaking device
 		var/mob/living/carbon/human/H = user
-		if(istype(H.back,/obj/item/rig))
-			var/obj/item/rig/R = H.back
+		var/obj/item/rig/R = H.get_equipped_item(slot_back_str)
+		if(istype(R))
 			for(var/obj/item/rig_module/stealth_field/S in R.installed_modules)
 				S.deactivate()
 

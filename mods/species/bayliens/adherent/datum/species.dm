@@ -48,6 +48,8 @@
 	mob_size =                MOB_SIZE_LARGE
 	strength =                STR_HIGH
 
+	base_eye_color = COLOR_LIME
+
 	speech_sounds = list('mods/species/bayliens/adherent/sound/chime.ogg')
 	speech_chance = 25
 
@@ -108,6 +110,7 @@
 
 	move_trail = /obj/effect/decal/cleanable/blood/tracks/snake
 	max_players = 3
+	blood_volume = 0
 
 /decl/species/adherent/can_overcome_gravity(var/mob/living/carbon/human/H)
 	. = FALSE
@@ -158,5 +161,19 @@
 		"belt" =  list("loc" = ui_belt,      "name" = "Belt",     "slot" = slot_belt_str,    "state" = "belt")
 	)
 
-/decl/species/adherent/post_organ_rejuvenate(var/obj/item/organ/org, var/mob/living/carbon/human/H)
-	org.status |= (ORGAN_BRITTLE|ORGAN_CRYSTAL|ORGAN_PROSTHETIC)
+
+/decl/species/adherent
+	var/static/list/apply_encased = list(
+		BP_CHEST,
+		BP_GROIN,
+		BP_HEAD
+	)
+
+/decl/species/adherent/apply_species_organ_modifications(var/obj/item/organ/org)
+	..()
+	org.robotize(/decl/prosthetics_manufacturer/adherent, FALSE, TRUE, /decl/material/solid/gemstone/crystal, BODYTYPE_ADHERENT, SPECIES_ADHERENT)
+	if(istype(org, /obj/item/organ/external))
+		var/obj/item/organ/external/E = org
+		E.arterial_bleed_severity = 0
+		if(E.organ_tag in apply_encased)
+			E.encased = "ceramic hull"
