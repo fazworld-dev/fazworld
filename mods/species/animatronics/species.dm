@@ -72,7 +72,7 @@
 /decl/species/animatronic/apply_species_organ_modifications(obj/item/organ/org, mob/living/carbon/human/H)
 	..()
 	var/obj/item/organ/external/E = org
-	var/decl/bodytype/animatronic/A = H.bodytype
+	var/decl/bodytype/animatronic/A = E.owner?.bodytype
 	var/our_model = istype(A) ? A.model : /decl/prosthetics_manufacturer/endoskeleton
 	if(istype(E) && (!BP_IS_PROSTHETIC(E) || (E.model != our_model)))
 		E.robotize(our_model)
