@@ -19,8 +19,11 @@
 /datum/job/ministation/animatronic/proc/animatronicize(var/mob/living/carbon/human/H, var/full = FALSE)
 	H.change_species(SPECIES_ANIMATRONIC)
 	var/decl/bodytype/animatronic/new_bodytype = GET_DECL(animatronic_bodytype)
+	// TODO: REMOVE SECTION AFTER CHANGE_SPECIES GETS BODYTYPE ARG
 	H.set_bodytype(new_bodytype)
 	H.species?.create_missing_organs(H, TRUE)
+	H.UpdateAppearance()
+	// END
 	var/old_tail = H.get_organ(BP_TAIL)
 	if(old_tail)
 		qdel(old_tail)
