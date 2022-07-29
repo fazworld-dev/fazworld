@@ -29,8 +29,8 @@ General Public License version 3.
 
 
 <h3 id="modules">Modules
-<aside>(131 modules,
-    44/3937 macros, 1.1%)</aside></h3>
+<aside>(132 modules,
+    45/3974 macros, 1.1%)</aside></h3>
 <ul class="index-tree modules">
     <li><a href="(builtins).html" title="(builtins)">(builtins)</a></li>
     <li class="has-children"><span title="code">code</span><ul class="index-tree">
@@ -41,6 +41,7 @@ General Public License version 3.
     <li><a href="code/__defines/admin.html" title="code&#x2F;__defines&#x2F;admin">admin</a></li>
     <li><a href="code/__defines/gamemode.html" title="code&#x2F;__defines&#x2F;gamemode">gamemode</a></li>
     <li><a href="code/__defines/lists.html" title="code&#x2F;__defines&#x2F;lists">lists</a></li>
+    <li><a href="code/__defines/mapping.html" title="code&#x2F;__defines&#x2F;mapping">mapping</a></li>
     <li><a href="code/__defines/zmimic.html" title="code&#x2F;__defines&#x2F;zmimic">zmimic</a></li>
     </ul></li>
     <li><span class="no-substance">_global_vars&#x2F;lists&#x2F;</span><a href="code/_global_vars/lists/objects.html" title="code&#x2F;_global_vars&#x2F;lists&#x2F;objects">objects</a></li>
@@ -246,9 +247,10 @@ Thanks to forum_account for saving the day, the library can be found
 
 
 <h3 id="types">Types
-<aside>(83 detailed/259 documented/16328 total, 1.6%)</aside></h3>
+<aside>(91 detailed/267 documented/16371 total, 1.6%)</aside></h3>
 <ul class="index-tree">
     <li><a href="global.html" title="(global)">(global)</a></li>
+    <li><a href="area.html" title="&#x2F;area">area</a></li>
     <li class="has-children"><a href="atom.html" title="&#x2F;atom">atom</a><ul class="index-tree">
     <li><a href="atom/movable.html" title="&#x2F;atom&#x2F;movable">movable</a> - Virtual Mob Creation</li>
     </ul></li>
@@ -311,7 +313,8 @@ Then do start() to start it and stop() to stop it, obviously
 and don't call start() in a loop that will be repeated otherwise it'll get spammed!<ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;datum&#x2F;effect&#x2F;effect&#x2F;system&#x2F;trail&#x2F;steam">steam</span> - Attach a steam trail to an object (eg. a reacting beaker) that will follow it</li>
     </ul></li>
-    <li class="has-children"><span class="no-substance">extension&#x2F;</span><span title="&#x2F;datum&#x2F;extension&#x2F;scent">scent</span> - Scent extensions
+    <li class="has-children"><span title="&#x2F;datum&#x2F;extension">extension</span><ul class="index-tree">
+    <li class="has-children"><span title="&#x2F;datum&#x2F;extension&#x2F;scent">scent</span> - Scent extensions
 Usage:
 To add:
 set_extension(atom, /datum/extension/scent/PATH/TO/SPECIFIC/SCENT)
@@ -319,6 +322,8 @@ This will set up the extension and will make it begin to emit_scent.
 To remove:
 remove_extension(atom, /datum/extension/scent)<ul class="index-tree">
     <li><a href="datum/extension/scent/custom.html" title="&#x2F;datum&#x2F;extension&#x2F;scent&#x2F;custom">custom</a></li>
+    </ul></li>
+    <li><a href="datum/extension/tool.html" title="&#x2F;datum&#x2F;extension&#x2F;tool">tool</a></li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;datum&#x2F;follow_holder">follow_holder</span> - Follow Metadata</li>
     <li class="has-children"><a href="datum/game_mode.html" title="&#x2F;datum&#x2F;game_mode">game_mode</a><ul class="index-tree">
@@ -413,6 +418,7 @@ A list of strings that are used by the end of round credits roll.</li>
     </ul></li>
     <li><a href="decl/prosthetics_manufacturer.html" title="&#x2F;decl&#x2F;prosthetics_manufacturer">prosthetics_manufacturer</a></li>
     <li><span class="no-substance" title="&#x2F;decl&#x2F;scent_intensity">scent_intensity</span> - Scent intensity</li>
+    <li><span class="no-substance">tool_archetype&#x2F;</span><a href="decl/tool_archetype/pen.html" title="&#x2F;decl&#x2F;tool_archetype&#x2F;pen">pen</a></li>
     <li><a href="decl/topic_command.html" title="&#x2F;decl&#x2F;topic_command">topic_command</a></li>
     </ul></li>
     <li><a href="dmm_suite.html" title="&#x2F;dmm_suite">dmm_suite</a></li>
@@ -488,6 +494,7 @@ Parameters: var/obj/item/card/id</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj">obj</span><ul class="index-tree">
     <li><span class="no-substance">abstract&#x2F;</span><a href="obj/abstract/map_data.html" title="&#x2F;obj&#x2F;abstract&#x2F;map_data">map_data</a></li>
+    <li><a href="obj/compass_holder.html" title="&#x2F;obj&#x2F;compass_holder">compass_holder</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;effect">effect</span><ul class="index-tree">
     <li><span class="no-substance">decal&#x2F;cleanable&#x2F;blood&#x2F;</span><a href="obj/effect/decal/cleanable/blood/tracks.html" title="&#x2F;obj&#x2F;effect&#x2F;decal&#x2F;cleanable&#x2F;blood&#x2F;tracks">tracks</a></li>
     <li><span class="no-substance">effect&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;effect&#x2F;effect&#x2F;smoke">smoke</span> - SMOKE SYSTEMS</li>
@@ -525,6 +532,7 @@ Parameters: var/obj/item/card/id</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;camera&#x2F;siliconcam">siliconcam</span> - AI-specific</li>
     </ul></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;camera_film">camera_film</span> - film</li>
+    <li><a href="obj/item/cataloguer.html" title="&#x2F;obj&#x2F;item&#x2F;cataloguer">cataloguer</a></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;item&#x2F;chems">chems</span><ul class="index-tree">
     <li><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;chems&#x2F;condiment">condiment</span> - Condiments</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;chems&#x2F;drinks">drinks</span> - Drinks.<ul class="index-tree">
@@ -548,6 +556,7 @@ Parameters: var/obj/item/card/id</li>
     </ul></li>
     <li><span class="no-substance">syringe&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;chems&#x2F;syringe&#x2F;stabilizer">stabilizer</span> - Syringes. END</li>
     </ul></li>
+    <li><a href="obj/item/clipboard.html" title="&#x2F;obj&#x2F;item&#x2F;clipboard">clipboard</a></li>
     <li class="has-children"><a href="obj/item/clothing.html" title="&#x2F;obj&#x2F;item&#x2F;clothing">clothing</a><ul class="index-tree">
     <li><span class="no-substance">suit&#x2F;storage&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;item&#x2F;clothing&#x2F;suit&#x2F;storage&#x2F;hooded">hooded</span> - Hoods for winter coats and chaplain hoodie etc</li>
     </ul></li>
@@ -629,11 +638,13 @@ TO-DO -- Using it as a power measurement tool for cables etc. Nannek.</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;singularity&#x2F;narsie&#x2F;wizard">wizard</span> - Wizard narsie.</li>
     </ul></li>
     <li class="has-children"><span title="&#x2F;obj&#x2F;structure">structure</span><ul class="index-tree">
+    <li><a href="obj/structure/bedsheetbin.html" title="&#x2F;obj&#x2F;structure&#x2F;bedsheetbin">bedsheetbin</a></li>
     <li><span class="no-substance">closet&#x2F;secure_closet&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;closet&#x2F;secure_closet&#x2F;miner">miner</span> - Miner Lockers</li>
     <li class="has-children"><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;disposalpipe">disposalpipe</span><ul class="index-tree">
     <li><span class="no-substance">junction&#x2F;</span><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;disposalpipe&#x2F;junction&#x2F;yjunction">yjunction</span> - Z-Level stuff</li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;disposalpipe&#x2F;up">up</span> - Z-Level stuff</li>
     </ul></li>
+    <li><a href="obj/structure/flora.html" title="&#x2F;obj&#x2F;structure&#x2F;flora">flora</a></li>
     <li><a href="obj/structure/fuel_port.html" title="&#x2F;obj&#x2F;structure&#x2F;fuel_port">fuel_port</a></li>
     <li><span class="no-substance" title="&#x2F;obj&#x2F;structure&#x2F;ore_box">ore_box</span> - Ore box</li>
     </ul></li>
@@ -651,7 +662,7 @@ TO-DO -- Using it as a power measurement tool for cables etc. Nannek.</li>
 </main>
 <footer>
     fazworld.dme
-    <a href="https://github.com/fazworld-dev/fazworld/tree/418f49665f8bc577a8a3df639776aaad0084dd60">418f496</a>
+    <a href="https://github.com/fazworld-dev/fazworld/tree/62d722e9412a74a4858f3b3c433a0e4247c60d4d">62d722e</a>
         (dev) &mdash; <a href="https://github.com/SpaceManiac/SpacemanDMM/blob/master/src/dmdoc/README.md">dmdoc 1.4.1</a></footer>
 </body>
 </html>
