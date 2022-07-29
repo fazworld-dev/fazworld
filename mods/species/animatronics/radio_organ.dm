@@ -29,7 +29,7 @@
 	icon_state = "robot_base"
 	parent_organ = BP_HEAD
 	organ_tag = BP_RADIO
-	status = ORGAN_PROSTHETIC
+	organ_properties = ORGAN_PROP_PROSTHETIC
 	var/obj/item/radio/headset/animatronic/radio = /obj/item/radio/headset/animatronic
 
 /obj/item/organ/internal/animatronic_radio/do_install(mob/living/carbon/human/target, obj/item/organ/external/affected)

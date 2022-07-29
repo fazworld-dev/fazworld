@@ -11,20 +11,14 @@
 		/decl/material/solid/metal/silver = MATTER_AMOUNT_TRACE,
 		/decl/material/solid/metal/gold = MATTER_AMOUNT_TRACE
 	)
+	organ_tag = BP_POSIBRAIN
+	mmi_type = /obj/item/mmi/digital/animatronic
 
 /obj/item/mmi/digital/animatronic
 	icon = 'icons/obj/modules/module_mainboard.dmi'
 	icon_state = ICON_STATE_WORLD
 
-/obj/item/organ/internal/mmi_holder/digital/do_install(mob/living/carbon/human/target, obj/item/organ/external/affected, in_place)
-	if(status & ORGAN_CUT_AWAY || !(. = ..()))
-		return
-
-	if(!stored_mmi)
-		stored_mmi = new /obj/item/mmi/digital/animatronic(src)
-	. = ..()
-
 // POWER CELL DESCRIPTION OVERRIDE
 
 /obj/item/organ/internal/cell
-	desc = "A small, powerful cell for use in robots."
+	desc = "A small, powerful cell for use in large robots."

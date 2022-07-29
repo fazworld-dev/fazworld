@@ -2,6 +2,7 @@
 // Turf-only flags.
 #define TURF_FLAG_NOJAUNT             BITFLAG(0) // This is used in literally one place, turf.dm, to block ethereal jaunt.
 #define TURF_FLAG_NORUINS             BITFLAG(1) // Used by the ruin generator to skip placing loaded ruins on this turf.
+#define TURF_FLAG_BACKGROUND          BITFLAG(2) // Used by shuttle movement to determine if it should be ignored by turf translation.
 
 #define TRANSITIONEDGE 7 // Distance from edge to move to another z-level.
 #define RUIN_MAP_EDGE_PAD 15
@@ -223,13 +224,12 @@
 #endif
 
 // Surgery candidate flags.
-#define SURGERY_NO_ROBOTIC        1
-#define SURGERY_NO_CRYSTAL        2
-#define SURGERY_NO_STUMP          4
-#define SURGERY_NO_FLESH          8
-#define SURGERY_NEEDS_INCISION   16
-#define SURGERY_NEEDS_RETRACTED  32
-#define SURGERY_NEEDS_ENCASEMENT 64
+#define SURGERY_NO_ROBOTIC       BITFLAG(0)
+#define SURGERY_NO_CRYSTAL       BITFLAG(1)
+#define SURGERY_NO_FLESH         BITFLAG(2)
+#define SURGERY_NEEDS_INCISION   BITFLAG(3)
+#define SURGERY_NEEDS_RETRACTED  BITFLAG(4)
+#define SURGERY_NEEDS_ENCASEMENT BITFLAG(5)
 
 //Inserts 'a' or 'an' before X in ways \a doesn't allow
 #define ADD_ARTICLE(X) "[(lowertext(X[1]) in global.vowels) ? "an" : "a"] [X]"
@@ -239,7 +239,7 @@
 #define SOULSTONE_ESSENCE 1
 
 #define INCREMENT_WORLD_Z_SIZE world.maxz++; global.connected_z_cache.Cut(); if (SSzcopy.zlev_maximums.len) { SSzcopy.calculate_zstack_limits() }
-#define ARE_Z_CONNECTED(ZA, ZB) (ZA > 0 && ZB > 0 && ZA <= world.maxz && ZB <= world.maxz && ((ZA == ZB) || ((global.connected_z_cache.len >= ZA && global.connected_z_cache[ZA]) ? global.connected_z_cache[ZA][ZB] : AreConnectedZLevels(ZA, ZB))))
+#define ARE_Z_CONNECTED(ZA, ZB) (ZA > 0 && ZB > 0 && ZA <= world.maxz && ZB <= world.maxz && ((ZA == ZB) || ((length(global.connected_z_cache) >= ZA && global.connected_z_cache[ZA] && length(global.connected_z_cache[ZA]) >= ZB) ? global.connected_z_cache[ZA][ZB] : AreConnectedZLevels(ZA, ZB))))
 
 //Request Console Department Types
 #define RC_ASSIST 1		//Request Assistance

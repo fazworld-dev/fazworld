@@ -27,6 +27,11 @@ var/global/list/overmap_unknown_ids = list()
 
 	var/overmap_id = OVERMAP_ID_SPACE
 
+/obj/effect/overmap/proc/get_heading_angle()
+	. = round(Atan2(speed[2], speed[1]))
+	if(. < 0) // Speeds can be negative so invert the degree value.
+		. += 360
+
 /obj/effect/overmap/touch_map_edge(var/overmap_id)
 	return
 
@@ -74,14 +79,16 @@ var/global/list/overmap_unknown_ids = list()
 	var/datum/overmap/overmap = global.overmaps_by_z["[T.z]"]
 	var/nx = x
 	var/ny = y
+	
+	var/heading_dir = get_heading_dir()
 
-	if((dir & WEST) && x == 1)
+	if((heading_dir & WEST) && x == 1)
 		nx = overmap.map_size_y - 1
-	else if((dir & EAST) && x == overmap.map_size_y)
+	else if((heading_dir & EAST) && x == overmap.map_size_y)
 		nx = 2
-	if((dir & SOUTH)  && y == 1)
+	if((heading_dir & SOUTH)  && y == 1)
 		ny = overmap.map_size_y - 1
-	else if((dir & NORTH) && y == overmap.map_size_y)
+	else if((heading_dir & NORTH) && y == overmap.map_size_y)
 		ny = 2
 	if((x == nx) && (y == ny))
 		return //we're not flying off anywhere
@@ -96,7 +103,7 @@ var/global/list/overmap_unknown_ids = list()
 /obj/effect/overmap/proc/get_speed()
 	return round(sqrt(speed[1] ** 2 + speed[2] ** 2), SHIP_MOVE_RESOLUTION)
 
-/obj/effect/overmap/proc/get_heading()
+/obj/effect/overmap/proc/get_heading_dir()
 	var/res = 0
 	if(MOVING(speed[1], min_speed))
 		if(speed[1] > 0)
@@ -149,6 +156,8 @@ var/global/list/overmap_unknown_ids = list()
 	if(can_burn())
 		last_burn = world.time
 		var/delta_v = get_delta_v() / KM_OVERMAP_RATE
+		if(delta_v == 0)
+			return
 		var/partial_power = Clamp(actual_accel_limit / delta_v, 0, 1)
 		var/acceleration = min(get_delta_v(TRUE, partial_power) / KM_OVERMAP_RATE, actual_accel_limit)
 		if(direction & EAST)
@@ -186,3 +195,6 @@ var/global/list/overmap_unknown_ids = list()
 
 /obj/effect/overmap/proc/get_delta_v()
 	return
+
+/obj/effect/overmap/proc/get_vessel_mass() //Same as above.
+	return vessel_mass

@@ -207,7 +207,7 @@
 /*
 	Restrained ClickOn
 
-	Used when you are handcuffed and click things.
+	Used when you are cuffed and click things.
 	Not currently used by anything but could easily be.
 */
 /mob/proc/RestrainedClickOn(var/atom/A)
@@ -264,7 +264,7 @@
 	A.AltClick(src)
 
 /atom/proc/AltClick(var/mob/user)
-	if(try_handle_alt_interactions(user))
+	if(try_handle_interactions(user, get_alt_interactions(user)))
 		return TRUE
 	if(user?.get_preference_value(/datum/client_preference/show_turf_contents) == PREF_ALT_CLICK)
 		. = show_atom_list_for_turf(user, get_turf(src))

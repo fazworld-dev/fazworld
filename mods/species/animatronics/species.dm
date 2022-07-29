@@ -51,14 +51,14 @@
 		TAG_CULTURE = list(/decl/cultural_info/culture/animatronic)
 	)
 	has_organ = list(
-		BP_BRAIN =  /obj/item/organ/internal/mmi_holder/controlchip,
+		BP_POSIBRAIN =  /obj/item/organ/internal/mmi_holder/controlchip,
 		BP_CELL =   /obj/item/organ/internal/cell,
 		BP_EYES  =  /obj/item/organ/internal/eyes/robot,
 		BP_ACCESS_CONTROLLER = /obj/item/organ/internal/access_controller,
 		BP_RADIO = /obj/item/organ/internal/animatronic_radio
 	)
 	vital_organs = list(
-		BP_BRAIN = list("path" = /obj/item/organ/internal/mmi_holder/controlchip),
+		BP_POSIBRAIN = list("path" = /obj/item/organ/internal/mmi_holder/controlchip),
 		BP_CHEST = list("path" = /obj/item/organ/external/chest),
 	)
 
@@ -69,9 +69,10 @@
 		/decl/emote/exertion/synthetic/creak
 	)
 
-/decl/species/animatronic/post_organ_rejuvenate(obj/item/organ/org, mob/living/carbon/human/H)
+/decl/species/animatronic/apply_species_organ_modifications(obj/item/organ/org, mob/living/carbon/human/H)
+	..()
 	var/obj/item/organ/external/E = org
-	var/decl/bodytype/animatronic/A = H.bodytype
+	var/decl/bodytype/animatronic/A = E.owner?.bodytype
 	var/our_model = istype(A) ? A.model : /decl/prosthetics_manufacturer/endoskeleton
 	if(istype(E) && (!BP_IS_PROSTHETIC(E) || (E.model != our_model)))
 		E.robotize(our_model)

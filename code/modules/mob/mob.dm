@@ -9,8 +9,8 @@
 
 	unset_machine()
 	QDEL_NULL(hud_used)
-	if(s_active)
-		s_active.close(src)
+	if(active_storage)
+		active_storage.close(src)
 	if(istype(ability_master))
 		QDEL_NULL(ability_master)
 	if(istype(skillset))
@@ -496,10 +496,7 @@
 /mob/living/carbon/human/pull_damage()
 	if(!lying || getBruteLoss() + getFireLoss() < 100)
 		return FALSE
-	for(var/thing in get_external_organs())
-		var/obj/item/organ/external/e = thing
-		if(!e || e.is_stump())
-			continue
+	for(var/obj/item/organ/external/e in get_external_organs())
 		if((e.status & ORGAN_BROKEN) && !e.splinted)
 			return TRUE
 		if(e.status & ORGAN_BLEEDING)
@@ -966,8 +963,9 @@
 		return 0
 	return 1
 
+// Let simple mobs press buttons and levers but nothing more complex.
 /mob/proc/has_dexterity(var/dex_level)
-	. = TRUE
+	. = dex_level <= DEXTERITY_SIMPLE_MACHINES
 
 /mob/proc/check_dexterity(var/dex_level, var/silent)
 	. = has_dexterity(dex_level)
@@ -1073,36 +1071,43 @@
 /mob/living/carbon/human/get_weather_protection()
 	. = ..()
 	if(!LAZYLEN(.))
-		var/obj/item/clothing/head/check_head = head
+		var/obj/item/clothing/head/check_head = get_equipped_item(slot_head_str)
 		if(!istype(check_head) || !check_head.protects_against_weather)
 			return
-		var/obj/item/clothing/suit/check_body = wear_suit
+		var/obj/item/clothing/suit/check_body = get_equipped_item(slot_wear_suit_str)
 		if(!istype(check_body) || !check_body.protects_against_weather)
 			return
 		LAZYADD(., check_head)
 		LAZYADD(., check_body)
 
-/mob/proc/get_weather_exposure(var/obj/abstract/weather_system/weather)
-	var/turf/T = loc
+/mob/proc/get_weather_exposure()
 
 	// We're inside something else.
-	if(!istype(T))
+	if(!isturf(loc))
 		return WEATHER_PROTECTED
 
-	// Either we're outside being rained on, or we're in turf-local weather being rained on.
-	if(T.is_outside() || T.weather == weather)
-		var/list/weather_protection = get_weather_protection()
-		if(LAZYLEN(weather_protection))
+	var/turf/T = loc
+	// We're under a roof or otherwise shouldn't be being rained on.
+	if(!T.is_outside())
+
+		// For non-multiz we'll give everyone some nice ambience.
+		if(!HasAbove(T.z))
 			return WEATHER_PROTECTED
-		return WEATHER_EXPOSED
 
-	// The z-level has weather, but we aren't standing in it, so it's probably above us.
-	T = GetAbove(T)
-	if(!T || !T.is_open())
+		// For multi-z, check the actual weather on the turf above.
+		// TODO: maybe make this a property of the z-level marker.
+		var/turf/above = GetAbove(T)
+		if(above.weather)
+			return WEATHER_PROTECTED
+
+		// Being more than one level down should exempt us from ambience.
+		return WEATHER_IGNORE
+
+	// Nothing's protecting us from the rain here
+	var/list/weather_protection = get_weather_protection()
+	if(LAZYLEN(weather_protection))
 		return WEATHER_PROTECTED
-
-	// We're inside, and more than one z-level below the roof, so ignore it.
-	return WEATHER_IGNORE
+	return WEATHER_EXPOSED
 
 /mob/proc/IsMultiZAdjacent(var/atom/neighbor)
 

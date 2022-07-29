@@ -24,6 +24,7 @@
 	icon_state = "tube_map"
 	desc = "A lighting fixture."
 	anchored = 1
+	obj_flags = OBJ_FLAG_MOVES_UNSUPPORTED
 	layer = ABOVE_HUMAN_LAYER  					// They were appearing under mobs which is a little weird - Ostaf
 	use_power = POWER_USE_ACTIVE
 	idle_power_usage = 2
@@ -344,24 +345,20 @@
 
 	// make it burn hands if not wearing fire-insulated gloves
 	if(on)
-		var/prot = 0
-		var/mob/living/carbon/human/H = user
 
+		var/prot = FALSE
+		var/mob/living/carbon/human/H = user
 		if(istype(H))
-			if(H.gloves)
-				var/obj/item/clothing/gloves/G = H.gloves
-				if(G.max_heat_protection_temperature)
-					if(G.max_heat_protection_temperature > LIGHT_BULB_TEMPERATURE)
-						prot = 1
-		else
-			prot = 1
+			var/obj/item/clothing/gloves/G = H.get_equipped_item(slot_gloves_str)
+			if(istype(G) && G.max_heat_protection_temperature > LIGHT_BULB_TEMPERATURE)
+				prot = TRUE
 
 		if(prot > 0 || (MUTATION_COLD_RESISTANCE in user.mutations))
 			to_chat(user, "You remove the [get_fitting_name()].")
 		else if(istype(user) && user.is_telekinetic())
 			to_chat(user, "You telekinetically remove the [get_fitting_name()].")
 		else if(user.a_intent != I_HELP)
-			var/obj/item/organ/external/hand = H.get_organ(user.get_active_held_item_slot())
+			var/obj/item/organ/external/hand = GET_EXTERNAL_ORGAN(H, user.get_active_held_item_slot())
 			if(hand && hand.is_usable() && !hand.can_feel_pain())
 				user.apply_damage(3, BURN, hand.organ_tag, used_weapon = src)
 				var/decl/pronouns/G = user.get_pronouns()

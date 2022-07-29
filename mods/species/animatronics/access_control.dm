@@ -25,7 +25,7 @@
 	parent_organ = BP_HEAD
 	organ_tag = BP_ACCESS_CONTROLLER
 	surface_accessible = TRUE
-	status = ORGAN_PROSTHETIC
+	organ_properties = ORGAN_PROP_PROSTHETIC
 	var/obj/item/card/id/id_card = /obj/item/card/id/animatronic
 
 /obj/item/organ/internal/access_controller/do_install(mob/living/carbon/human/target, obj/item/organ/external/affected)

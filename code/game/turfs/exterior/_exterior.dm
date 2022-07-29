@@ -5,6 +5,7 @@
 	icon_state = "0"
 	layer = PLATING_LAYER
 	open_turf_type = /turf/exterior/open
+	turf_flags = TURF_FLAG_BACKGROUND
 	var/diggable = 1
 	var/dirt_color = "#7c5e42"
 	var/possible_states = 0
@@ -48,7 +49,7 @@
 /turf/exterior/is_floor()
 	return !density && !is_open()
 
-/turf/exterior/ChangeTurf(var/turf/N, var/tell_universe = TRUE, var/force_lighting_update = FALSE, var/keep_air = FALSE, var/keep_outside = FALSE)
+/turf/exterior/ChangeTurf(var/turf/N, var/tell_universe = TRUE, var/force_lighting_update = FALSE, var/keep_air = FALSE)
 	var/last_affecting_heat_sources = affecting_heat_sources
 	var/turf/exterior/ext = ..()
 	if(istype(ext))
@@ -108,21 +109,17 @@
 
 /turf/exterior/attackby(obj/item/C, mob/user)
 
-	if(diggable && istype(C,/obj/item/shovel))
-		visible_message(SPAN_NOTICE("\The [user] starts digging at \the [src]."))
-		if(do_after(user, 50))
-			to_chat(user, SPAN_NOTICE("You dig a deep pit."))
+	if(diggable && IS_SHOVEL(C))
+		if(C.do_tool_interaction(TOOL_SHOVEL, user, src, 5 SECONDS))
 			new /obj/structure/pit(src)
-			diggable = 0
+			diggable = FALSE
 		else
 			to_chat(user, SPAN_NOTICE("You stop shoveling."))
 		return TRUE
 
 	if(istype(C, /obj/item/stack/tile))
 		var/obj/item/stack/tile/T = C
-		if(T.use(1))
-			playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
-			ChangeTurf(/turf/simulated/floor, FALSE, FALSE, TRUE)
+		T.try_build_turf(user, src)
 		return TRUE
 
 	. = ..()

@@ -385,10 +385,9 @@ default behaviour is:
 		buckled.unbuckle_mob()
 	if(iscarbon(src))
 		var/mob/living/carbon/C = src
-
-		if (C.handcuffed && !initial(C.handcuffed))
-			C.drop_from_inventory(C.handcuffed)
-		C.handcuffed = initial(C.handcuffed)
+		var/obj/item/cuffs = get_equipped_item(slot_handcuffed_str)
+		if (cuffs)
+			C.unEquip(cuffs)
 	BITSET(hud_updateflag, HEALTH_HUD)
 	BITSET(hud_updateflag, STATUS_HUD)
 	BITSET(hud_updateflag, LIFE_HUD)
@@ -476,13 +475,14 @@ default behaviour is:
 /mob/living/carbon/basic_revival(var/repair_brain = TRUE)
 	if(repair_brain && should_have_organ(BP_BRAIN))
 		repair_brain = FALSE
-		var/obj/item/organ/internal/brain/brain = get_organ(BP_BRAIN)
-		if(brain.damage > (brain.max_damage/2))
-			brain.damage = (brain.max_damage/2)
-		if(brain.status & ORGAN_DEAD)
-			brain.status &= ~ORGAN_DEAD
-			START_PROCESSING(SSobj, brain)
-		brain.update_icon()
+		var/obj/item/organ/internal/brain/brain = get_organ(BP_BRAIN, /obj/item/organ/internal/brain)
+		if(brain)
+			if(brain.damage > (brain.max_damage/2))
+				brain.damage = (brain.max_damage/2)
+			if(brain.status & ORGAN_DEAD)
+				brain.status &= ~ORGAN_DEAD
+				START_PROCESSING(SSobj, brain)
+			brain.update_icon()
 	..(repair_brain)
 
 /mob/living/proc/UpdateDamageIcon()
@@ -554,8 +554,8 @@ default behaviour is:
 	. = ..()
 	if(.)
 		handle_grabs_after_move(old_loc, Dir)
-		if (s_active && !( s_active in contents ) && get_turf(s_active) != get_turf(src))	//check !( s_active in contents ) first so we hopefully don't have to call get_turf() so much.
-			s_active.close(src)
+		if (active_storage && !( active_storage in contents ) && get_turf(active_storage) != get_turf(src))	//check !( active_storage in contents ) first so we hopefully don't have to call get_turf() so much.
+			active_storage.close(src)
 
 /mob/living/verb/resist()
 	set name = "Resist"
@@ -683,11 +683,8 @@ default behaviour is:
 
 /mob/living/carbon/get_contained_external_atoms()
 	. = ..()
-	LAZYREMOVE(., get_organs())
-	//Since organs are cleared on destroy, add this separate check here
-	for(var/obj/item/organ/O in .)
-		if(!O.is_droppable())
-			LAZYREMOVE(., O)
+	if(.)
+		LAZYREMOVE(., get_organs())
 
 /mob/proc/can_be_possessed_by(var/mob/observer/ghost/possessor)
 	return istype(possessor) && possessor.client
@@ -1062,4 +1059,31 @@ default behaviour is:
 	adjustBruteLoss(rand(max(1, CEILING(mob_size * 0.33)), max(1, CEILING(mob_size * 0.66))))
 
 /mob/living/get_alt_interactions(mob/user)
-	. = ..() | /decl/interaction_handler/admin_kill
+	. = ..()
+	LAZYADD(., /decl/interaction_handler/admin_kill)
+
+/decl/interaction_handler/admin_kill
+	name = "Admin Kill"
+	expected_user_type = /mob/observer
+	expected_target_type = /mob/living
+	interaction_flags = 0
+
+/decl/interaction_handler/admin_kill/is_possible(atom/target, mob/user, obj/item/prop)
+	. = ..()
+	if(.)
+		if(!check_rights(R_INVESTIGATE, 0, user)) 
+			return FALSE
+		var/mob/living/M = target
+		if(M.stat == DEAD)
+			return FALSE
+
+/decl/interaction_handler/admin_kill/invoked(atom/target, mob/user, obj/item/prop)
+	var/mob/living/M = target
+	var/key_name = key_name(M)
+	if(alert(user, "Do you wish to kill [key_name]?", "Kill \the [M]?", "No", "Yes") != "Yes")
+		return FALSE
+	if(!is_possible(target, user, prop))
+		to_chat(user, SPAN_NOTICE("You were unable to kill [key_name]."))
+		return FALSE
+	M.death()
+	log_and_message_admins("\The [user] admin-killed [key_name].")

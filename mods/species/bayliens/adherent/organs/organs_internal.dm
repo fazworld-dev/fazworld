@@ -45,6 +45,7 @@
 
 /obj/item/organ/internal/powered
 	icon = 'mods/species/bayliens/adherent/icons/organs.dmi'
+	organ_properties = ORGAN_PROP_CRYSTAL
 	var/maintenance_cost = 1
 	var/base_action_state
 	var/active = FALSE
@@ -53,7 +54,7 @@
 /obj/item/organ/internal/powered/Process()
 	. = ..()
 	if(owner)
-		var/obj/item/organ/internal/cell/cell = owner.get_organ(BP_CELL)
+		var/obj/item/organ/internal/cell/cell = owner.get_organ(BP_CELL, /obj/item/organ/internal/cell)
 		if(active && !(cell && cell.use(maintenance_cost)))
 			active = FALSE
 			to_chat(owner, SPAN_DANGER("Your [name] [gender == PLURAL ? "are" : "is"] out of power!"))
@@ -116,7 +117,7 @@
 	icon = 'mods/species/bayliens/adherent/icons/organs.dmi'
 	eye_icon = 'mods/species/bayliens/adherent/icons/eyes.dmi'
 	icon_state = "eyes"
-	status = ORGAN_PROSTHETIC
+	organ_properties = ORGAN_PROP_CRYSTAL
 	contaminant_guard = TRUE
 	innate_flash_protection = FLASH_PROTECTION_MAJOR
 

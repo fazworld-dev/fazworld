@@ -246,7 +246,7 @@ var/global/list/turret_icons
 	if(prob(50))
 		new /obj/item/assembly/prox_sensor(loc)
 	. = ..()
-						
+
 /obj/machinery/porta_turret/attackby(obj/item/I, mob/user)
 	if(stat & BROKEN)
 		if(IS_CROWBAR(I))
@@ -458,7 +458,7 @@ var/global/list/turret_icons
 			return lethal ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
 		return TURRET_PRIORITY_TARGET
 
-	if(iscuffed(L)) // If the target is handcuffed, leave it alone
+	if(iscuffed(L)) // If the target is cuffed, leave it alone
 		return TURRET_NOT_TARGET
 
 	if(isanimal(L) || issmall(L)) // Animals are not so dangerous
@@ -785,17 +785,20 @@ var/global/list/turret_icons
 				build_step = 6
 				return
 
-	if(istype(I, /obj/item/pen))	//you can rename turrets like bots!
+	if(IS_PEN(I))	//you can rename turrets like bots!
 		var/t = sanitize_safe(input(user, "Enter new turret name", name, finish_name) as text, MAX_NAME_LEN)
-		if(!t)
+		if(!CanPhysicallyInteractWith(usr, src))
 			return
-		if(!in_range(src, usr) && loc != usr)
-			return
-
-		finish_name = t
+		if(!length(t))
+			finish_name = initial(finish_name)
+			to_chat(user, SPAN_NOTICE("You restore \the [src]'s default name."))
+			return TRUE
+		if(I.do_tool_interaction(TOOL_PEN, user, src, 2 SECOND, fuel_expenditure = 1) && !QDELETED(src))
+			finish_name = t
+			return TRUE
 		return
 
-	..()
+	return ..()
 
 
 /obj/machinery/porta_turret_construct/attack_hand(mob/user)

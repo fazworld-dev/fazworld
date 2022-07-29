@@ -80,4 +80,4 @@
 
 /obj/item/organ/external/tail/animatronic/get_tail_icon()
 	var/decl/prosthetics_manufacturer/R = GET_DECL(model)
-	return R?.get_limb_icon(src) || ..()
+	return R?.get_base_icon(owner) || ..()

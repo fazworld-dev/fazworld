@@ -6,6 +6,7 @@
 	desc = "It turns lights on and off. What are you, simple?"
 	icon = 'icons/obj/power.dmi'
 	icon_state = "light0"
+	obj_flags = OBJ_FLAG_MOVES_UNSUPPORTED
 	anchored = 1.0
 	idle_power_usage = 20
 	power_channel = LIGHT
@@ -37,7 +38,7 @@
 		connected_area = get_area(src)
 
 	if(connected_area && name == initial(name))
-		SetName("light switch ([connected_area.name])")
+		SetName("light switch ([connected_area.proper_name])")
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/light_switch/LateInitialize()

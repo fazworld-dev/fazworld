@@ -67,7 +67,7 @@
 	var/ui_expand_queue     = FALSE
 	var/ui_expand_resources = FALSE
 	var/ui_expand_config    = FALSE
-	var/ui_nb_categories    = 1      //Cached amount of categories in loaded designs. Used to decide if we display the category filter or not 
+	var/ui_nb_categories    = 1      //Cached amount of categories in loaded designs. Used to decide if we display the category filter or not
 
 /obj/machinery/fabricator/Destroy()
 	QDEL_NULL(currently_building)
@@ -92,7 +92,7 @@
 	sound_id = "[fabricator_sound]"
 
 	// Get any local network we need to be part of.
-	set_extension(src, /datum/extension/network_device, initial_network_id, initial_network_key, NETWORK_CONNECTION_STRONG_WIRELESS)
+	set_extension(src, /datum/extension/network_device, initial_network_id, initial_network_key, RECEIVER_STRONG_WIRELESS)
 
 	// Initialize material storage lists.
 	stored_material = list()
@@ -112,7 +112,10 @@
 	if(prefilled)
 		fill_to_capacity()
 
-	refresh_design_cache()
+	if(SSfabrication.post_recipe_init)
+		refresh_design_cache()
+	else
+		SSfabrication.queue_design_cache_refresh(src)
 
 /obj/machinery/fabricator/modify_mapped_vars(map_hash)
 	..()

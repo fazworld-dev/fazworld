@@ -54,6 +54,7 @@
 	clicksound = "button"
 	clickvol = 30
 	layer = ABOVE_WINDOW_LAYER
+	obj_flags = OBJ_FLAG_MOVES_UNSUPPORTED
 
 	base_type = /obj/machinery/alarm
 	frame_type = /obj/item/frame/air_alarm
@@ -79,6 +80,7 @@
 	var/screen = AALARM_SCREEN_MAIN
 	var/area_uid
 	var/area/alarm_area
+	var/custom_alarm_name
 
 	var/target_temperature = T0C+20
 	var/regulating_temperature = 0
@@ -128,19 +130,19 @@
 	. = ..()
 
 /obj/machinery/alarm/Destroy()
-	events_repository.unregister(/decl/observ/name_set, get_area(src), src, .proc/change_area_name)
+	reset_area(alarm_area, null)
 	unregister_radio(src, frequency)
 	return ..()
 
 /obj/machinery/alarm/Initialize(mapload, var/dir)
 	. = ..()
+	if (name != "alarm")
+		custom_alarm_name = TRUE // this will prevent us from messing with alarms with names set on map
 
-	alarm_area = get_area(src)
+	set_frequency(frequency)
+	reset_area(null, get_area(src))
 	if(!alarm_area)
 		return // spawned in nullspace, presumably as a prototype for construction purposes.
-	area_uid = alarm_area.uid
-	if (name == "alarm")
-		SetName("[alarm_area.name] Air Alarm")
 
 	// breathable air according to human/Life()
 	TLV[/decl/material/gas/oxygen] =			list(16, 19, 135, 140) // Partial pressure, kpa
@@ -154,10 +156,6 @@
 		if(!env_info.important_gasses[g])
 			trace_gas += g
 
-	events_repository.register(/decl/observ/name_set, alarm_area, src, .proc/change_area_name)
-	set_frequency(frequency)
-	for(var/device_tag in alarm_area.air_scrub_names + alarm_area.air_vent_names)
-		send_signal(device_tag, list()) // ask for updates; they initialized before us and we didn't get the data
 	queue_icon_update()
 
 /obj/machinery/alarm/modify_mapped_vars(map_hash)
@@ -378,10 +376,10 @@
 /obj/machinery/alarm/proc/register_env_machine(var/m_id, var/device_type)
 	var/new_name
 	if (device_type=="AVP")
-		new_name = "[alarm_area.name] Vent Pump #[alarm_area.air_vent_names.len+1]"
+		new_name = "[alarm_area.proper_name] Vent Pump #[alarm_area.air_vent_names.len+1]"
 		alarm_area.air_vent_names[m_id] = new_name
 	else if (device_type=="AScr")
-		new_name = "[alarm_area.name] Air Scrubber #[alarm_area.air_scrub_names.len+1]"
+		new_name = "[alarm_area.proper_name] Air Scrubber #[alarm_area.air_scrub_names.len+1]"
 		alarm_area.air_scrub_names[m_id] = new_name
 	send_signal(m_id, list("init" = new_name) )
 
@@ -459,7 +457,7 @@
 	var/datum/signal/alert_signal = new
 	alert_signal.source = src
 	alert_signal.transmission_method = 1
-	alert_signal.data["zone"] = alarm_area.name
+	alert_signal.data["zone"] = alarm_area.proper_name
 	alert_signal.data["type"] = "Atmospheric"
 
 	if(alert_level==2)
@@ -790,9 +788,31 @@
 	return ..()
 
 /obj/machinery/alarm/proc/change_area_name(var/area/A, var/old_area_name, var/new_area_name)
-	if(A != get_area(src))
+	if(A != alarm_area)
 		return
-	SetName(replacetext(name,old_area_name,new_area_name))
+	if (!custom_alarm_name)
+		SetName("[A.proper_name] Air Alarm")
+
+/obj/machinery/alarm/area_changed(area/old_area, area/new_area)
+	. = ..()
+	if(.)
+		reset_area(old_area, new_area)
+
+/obj/machinery/alarm/proc/reset_area(area/old_area, area/new_area)
+	if(old_area == new_area)
+		return
+	if(old_area && old_area == alarm_area)
+		alarm_area = null
+		area_uid = null
+		events_repository.register(/decl/observ/name_set, old_area, src, .proc/change_area_name)
+	if(new_area)
+		ASSERT(isnull(alarm_area))
+		alarm_area = new_area
+		area_uid = new_area.uid
+		change_area_name(alarm_area, null, alarm_area.name)
+		events_repository.register(/decl/observ/name_set, alarm_area, src, .proc/change_area_name)
+		for(var/device_tag in alarm_area.air_scrub_names + alarm_area.air_vent_names)
+			send_signal(device_tag, list()) // ask for updates; they initialized before us and we didn't get the data
 
 /*
 FIRE ALARM
@@ -807,6 +827,7 @@ FIRE ALARM
 	idle_power_usage = 2
 	active_power_usage = 6
 	power_channel = ENVIRON
+	obj_flags = OBJ_FLAG_MOVES_UNSUPPORTED
 
 	base_type = /obj/machinery/firealarm
 	frame_type = /obj/item/frame/fire_alarm
