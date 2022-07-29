@@ -315,6 +315,7 @@
 	vital = TRUE
 	organ_properties = ORGAN_PROP_PROSTHETIC //triggers robotization on init
 	scale_max_damage_to_species_health = FALSE
+	var/mmi_type = /obj/item/mmi // FAZ-WORLD EDIT
 	var/obj/item/mmi/stored_mmi
 	var/datum/mind/persistantMind //Mind that the organ will hold on to after being removed, used for transfer_and_delete
 	var/ownerckey // used in the event the owner is out of body
@@ -329,7 +330,7 @@
 		return
 
 	if(!stored_mmi)
-		stored_mmi = new(src)
+		stored_mmi = new mmi_type(src) // FAZ-WORLD EDIT
 	update_from_mmi()
 	persistantMind = owner.mind
 	ownerckey = owner.ckey
