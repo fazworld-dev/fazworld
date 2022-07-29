@@ -11,6 +11,7 @@
 		/decl/material/solid/metal/silver = MATTER_AMOUNT_TRACE,
 		/decl/material/solid/metal/gold = MATTER_AMOUNT_TRACE
 	)
+	organ_tag = BP_POSIBRAIN
 
 /obj/item/mmi/digital/animatronic
 	icon = 'icons/obj/modules/module_mainboard.dmi'
